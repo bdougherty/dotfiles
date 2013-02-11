@@ -1,0 +1,73 @@
+[alias]
+	ci = commit
+	st = status
+	br = branch
+	co = checkout
+	df = diff
+	staged = diff --staged
+	unstage = reset HEAD
+	revert = checkout --
+	last = log -1 HEAD
+	overview = log --graph --simplify-by-decoration --decorate --pretty=format:'%cd%Cgreen%d %Cblue%h %Creset%s' --date=short
+	fix = commit --amend -C HEAD
+	sub = submodule update --init --recursive
+	ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
+	dfs = diff --staged
+	dt = difftool
+	dts = difftool --staged
+	amend = commit --amend
+
+[branch]
+	autosetupmerge = always
+
+[color]
+	ui = always
+
+[color "branch"]
+	current = yellow black
+	local = yellow
+	remote = magenta
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red reverse
+	new = green reverse
+	whitespace = white reverse
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan reverse
+	branch = magenta bold
+
+[core]
+	editor = subl -n -w
+
+[diff]
+	tool = Kaleidoscope
+
+[difftool]
+	prompt = false
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[help]
+	autocorrect = 1
+
+[merge]
+	log = true
+	tool = Kaleidoscope
+
+[mergetool]
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+
+# Any GitHub repo with my username should be checked out r/w by default
+# http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
+[url "git@github.com:bdougherty/"]
+	insteadOf = "git://github.com/bdougherty/"
