@@ -39,5 +39,8 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 source ~/.git-completion.sh
 source ~/.hub-completion.sh
 
+# Add grunt completion
+eval "$(grunt --completion=bash)"
+
 # Add z
 . `brew --prefix`/etc/profile.d/z.sh
