@@ -77,9 +77,9 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
 # Sublime Text
-alias subl='open -a "Sublime Text 2"'
+alias subl='open -a "Sublime Text"'
 # also/or do this:
-# ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+# ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
 # `cat` with beautiful colors. requires Pygments installed.
 # sudo easy_install Pygments
