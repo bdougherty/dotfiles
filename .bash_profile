@@ -36,8 +36,8 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
 # Add git completion
-source ~/.git-completion.sh
-source ~/.hub-completion.sh
+source `brew --prefix`/etc/bash_completion.d/git-completion.bash
+source `brew --prefix`/etc/bash_completion.d/hub.bash_completion.sh
 
 # Add grunt completion
 eval "$(grunt --completion=bash)"
