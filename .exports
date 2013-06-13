@@ -28,3 +28,6 @@ export CLICOLOR=1
 
 # Set default editor to Sublime Text
 export EDITOR="subl -w"
+
+# rbenv
+export RBENV_ROOT=/usr/local/var/rbenv

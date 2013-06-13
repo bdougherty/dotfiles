@@ -42,5 +42,8 @@ source `brew --prefix`/etc/bash_completion.d/hub.bash_completion.sh
 # Add grunt completion
 eval "$(grunt --completion=bash)"
 
+# Add rbenv shims and autocompletion
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # Add z
 . `brew --prefix`/etc/profile.d/z.sh
