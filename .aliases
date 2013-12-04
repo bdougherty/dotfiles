@@ -88,3 +88,6 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 # Fun stuff
 alias please=sudo
 alias nyan='telnet miku.acm.uiuc.edu'
+alias wow=echo
+alias very=cat
+alias such=grep
