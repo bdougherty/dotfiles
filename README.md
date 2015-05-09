@@ -6,7 +6,7 @@
 git clone git://github.com/bdougherty/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && source install.sh
 ```
 
-To update, `cd` into `~/.dotfiles` and then:
+## Updating
 
 ```bash
 cd ~/.dotfiles
