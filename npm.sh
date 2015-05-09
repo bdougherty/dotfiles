@@ -1,6 +1,8 @@
-npm install -g bower
-npm install -g docco
+#!/bin/bash
+
+npm install -g doge
+npm install -g eslint
+npm install -g gitjk
 npm install -g grunt-cli
-npm install -g plato
-npm install -g queen
-npm install -g testem
+npm install -g tldr
+npm install -g keybase-installer

@@ -1,163 +1,129 @@
 #!/bin/bash
 
-# Ask for the administrator password upfront
-sudo -v
+# Dark mode and reduce transparency
+defaults write .GlobalPreferences AppleInterfaceStyle -string "Dark"
+defaults write com.apple.universalaccess reduceTransparency -int 1
 
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+# Disable dashboard
+defaults write com.apple.dashboard enabled-state -int 1
 
-
-###############################################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
-###############################################################################
-
-# Trackpad: enable tap to click for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+# Trackpad: enable tap to click and secondary click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -int 1
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -int 1
 
 # Enable full keyboard access for all controls
-# (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-# Enable access for assistive devices
-echo -n 'a' | sudo tee /private/var/db/.AccessibilityAPIEnabled > /dev/null 2>&1
-sudo chmod 444 /private/var/db/.AccessibilityAPIEnabled
-# TODO: avoid GUI password prompt somehow (http://apple.stackexchange.com/q/60476/4408)
-#sudo osascript -e 'tell application "System Events" to set UI elements enabled to true'
-
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-defaults write com.apple.universalaccess closeViewPanningMode -bool false
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -int 1
+defaults write com.apple.universalaccess closeViewPanningMode -int 0
 
-# Require password 1 minute after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 60
-
-
-###############################################################################
-# Finder                                                                      #
-###############################################################################
-
-# Show icons for hard drives, servers, and removable media on the desktop
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+# Show icons for servers and removable media on the desktop
+defaults write com.apple.finder ShowHardDrivesOnDesktop -int 0
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -int 1
+defaults write com.apple.finder ShowMountedServersOnDesktop -int 1
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -int 1
 
 # Disable the warning when changing a file extension
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-
-# Avoid creating .DS_Store files on network volumes
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.finder FXEnableExtensionChangeWarning -int 0
 
 # Set up desktop icon view
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy kind" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 52" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:labelOnBottom 0" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo 1" ~/Library/Preferences/com.apple.finder.plist
 
 # Use list view in all Finder windows by default
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Show home folder when opening new windows
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
+# Set the icon size of Dock items to 34 or 48 pixels depending on screen size
+resolution=$(system_profiler SPDisplaysDataType | grep Resolution)
+width=$(echo $resolution | cut -d ' ' -f 2)
+height=$(echo $resolution | cut -d ' ' -f 4)
 
-###############################################################################
-# Dock & hot corners                                                          #
-###############################################################################
+if [[ $(echo $resolution | cut -d ' ' -f 5) == 'Retina' ]]; then
+	width=$(echo $width/2 | bc)
+	height=$(echo $height/2 | bc)
+fi
 
-# Set the icon size of Dock items to 48 pixels
-defaults write com.apple.dock tilesize -int 48
+if [$height -gt 1000]; then
+	defaults write com.apple.dock tilesize -int 48
+else
+	defaults write com.apple.dock tilesize -int 34
+fi
 
 # Hot corners
-# Possible values:
-#  0: no-op
-#  2: Mission Control
-#  3: Show application windows
-#  4: Desktop
-#  5: Start screen saver
-#  6: Disable screen saver
-#  7: Dashboard
-# 10: Put display to sleep
-# 11: Launchpad
-# Top left screen corner → Application windows
+# Top left screen corner → Application Windows
 defaults write com.apple.dock wvous-tl-corner -int 3
 defaults write com.apple.dock wvous-tl-modifier -int 0
-# Bottom left screen corner → Put display to sleep
-defaults write com.apple.dock wvous-bl-corner -int 10
-defaults write com.apple.dock wvous-bl-modifier -int 0
 # Top right screen corner → Desktop
 defaults write com.apple.dock wvous-tr-corner -int 4
 defaults write com.apple.dock wvous-tr-modifier -int 0
-# Bottom right screen corner → Start screen saver
+# Bottom right screen corner → Disable Screen Saver
+defaults write com.apple.dock wvous-br-corner -int 6
+defaults write com.apple.dock wvous-br-modifier -int 0
+# Bottom left screen corner → Start Screen Saver
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
+# Safari
+defaults write -app Safari AlwaysShowTabBar -int 1
+defaults write -app Safari AutoFillPasswords -int 0
+defaults write -app Safari IncludeDevelopMenu -int 1
+defaults write -app Safari NewWindowBehavior -int 4
+defaults write -app Safari SearchProviderIdentifier 'com.duckduckgo'
+defaults write -app Safari SendDoNotTrackHTTPHeader -int 1
+defaults write -app Safari ShowFullURLInSmartSearchField -int 1
+defaults write -app Safari ShowSidebarInTopSites -int 1
+defaults write -app Safari TabCreationPolicy -int 0
+defaults write -app Safari WebKitDeveloperExtrasEnabledPreferenceKey -int 1
+defaults write -app Safari WebKitTabToLinksPreferenceKey -int 1
+defaults write -app Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -int 1
+defaults write -app Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks" -int 1
 
-###############################################################################
-# Safari & WebKit                                                             #
-###############################################################################
+# Mail
+defaults write -app Mail ConversationViewNextMessageDirection -int 2
+defaults write -app Mail ConversationViewSortDescending -int 0
+defaults write -app Mail ConversationViewSpansMailboxes -int 1
 
-# Enable Safari’s debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+# Kaleidoscope
+defaults write -app Kaleidoscope KSIgnoreWhitespaceUserDefaultsKey -int 1
+defaults write -app Kaleidoscope SUSendProfileInfo -int 0
+defaults write -app Kaleidoscope KSTextScopeFontInfoUserDefaultsKey -dict \
+	fontName -string "FiraMono-Regular" \
+	fontSize -int 12
 
-# Enable the Develop menu and the Web Inspector in Safari
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+# Fantastical 2
+defaults write -app "Fantastical 2" HideDockIcon -int 1
 
-# Add a context menu item for showing the Web Inspector in web views
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+# Tower
+defaults write -app Tower GTUserDefaultsAlwaysAutoUpdateSubmodules -int 1
+defaults write -app Tower GTUserDefaultsDefaultCloningDirectory -string "/Users/brad/Documents/Code"
+defaults write -app Tower GTUserDefaultsDiffToolIdentifier -string kaleidoscope
+defaults write -app Tower GTUserDefaultsGitBinary -string "/usr/local/bin/git"
+defaults write -app Tower GTUserDefaultsMergeToolIdentifier -string kaleidoscope
 
-# Show status bar
-defaults write com.apple.Safari ShowStatusBar -bool true
-
-# Always show tab bar
-defaults write com.apple.Safari AlwaysShowTabBar -bool true
-
-
-###############################################################################
-# Mail                                                                        #
-###############################################################################
-
-defaults write com.apple.mail ConversationViewNextMessageDirection -int 2
-defaults write com.apple.mail ConversationViewSortDescending -bool false
-defaults write com.apple.mail ConversationViewSpansMailboxes -bool true
-defaults write com.apple.mail ShowBccHeader -bool false
-defaults write com.apple.mail ShowHeaderDetails -bool true
-
-
-###############################################################################
-# Terminal                                                                    #
-###############################################################################
-
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
-
-# Install Inconsolata
-curl http://www.levien.com/type/myfonts/Inconsolata.otf > ~/Library/Fonts/Inconsolata.otf
-
-# Install the Monokai theme
-for attribute in com.apple.metadata:kMDItemDownloadedDate com.apple.metadata:kMDItemWhereFroms com.apple.quarantine; do
-	xattr -r -d "$attribute" "Monokai.terminal"
+# Kill all affected apps
+for app in "cfprefsd" "Dock" "Fantastical 2" "Finder" "Mail" "Kaleidoscope" "Safari" "Tower" "SystemUIServer"; do
+	killall "${app}" > /dev/null 2>&1
 done
-open "Monokai.terminal"
-sleep 2 # Wait a bit to make sure the theme is loaded
-
-# Use the Monokai theme by default in Terminal.app
-defaults write com.apple.Terminal "Default Window Settings" -string "Monokai"
-defaults write com.apple.Terminal "Startup Window Settings" -string "Monokai"
-
-
-###############################################################################
-# Kill affected applications                                                  #
-###############################################################################
-
-for app in Finder Dock Mail Safari SystemUIServer; do
-killall "$app" > /dev/null 2>&1
-done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
