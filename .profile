@@ -3,8 +3,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
-alias c='pygmentize -O style=monokai -f console256 -g'
-alias fuck='sudo $(history -p \!\!)'
+alias c="pygmentize -O style=monokai -f console256 -g"
+alias fuck="sudo $(history -p \!\!)"
 alias gitjk="history 10 | tail -r | gitjk_cmd"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias o="open"
@@ -12,11 +12,13 @@ alias oo="open ."
 alias ql="qlmanage -p"
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1]);"'
-alias resetprefs='killall -SIGTERM cfprefsd'
+alias resetprefs="killall -SIGTERM cfprefsd"
 alias wow=echo
 alias very=cat
 alias such=grep
-alias dot='subl ~/.dotfiles'
+alias dot="subl ~/.dotfiles"
+alias emojis="open http://www.emoji-cheat-sheet.com/"
+alias devdocs="open https://devdocs.io"
 
 function anybar {
 	echo -n $1 | nc -4u -w0 localhost ${2:-1738};
