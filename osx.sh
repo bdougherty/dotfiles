@@ -123,6 +123,10 @@ defaults write -app Tower GTUserDefaultsDiffToolIdentifier -string kaleidoscope
 defaults write -app Tower GTUserDefaultsGitBinary -string "/usr/local/bin/git"
 defaults write -app Tower GTUserDefaultsMergeToolIdentifier -string kaleidoscope
 
+# Script Editor
+defaults write -app "Script Editor" DefaultLanguageType -int 1785946994
+defaults write -app "Script Editor" UsesScriptAssistant -int 1
+
 # Kill all affected apps
 for app in "cfprefsd" "Dock" "Fantastical 2" "Finder" "Mail" "Kaleidoscope" "Safari" "Tower" "SystemUIServer"; do
 	killall "${app}" > /dev/null 2>&1
