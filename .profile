@@ -169,12 +169,15 @@ export HISTIGNORE="[ \t]*"
 if which subl >/dev/null 2>&1; then
 	export EDITOR="subl -w -n"
 	alias dot="subl -n ~/.dotfiles"
+	alias hosts="subl -n /etc/hosts"
 elif which vim >/dev/null 2>&1; then
 	export EDITOR="vim"
 	alias dot="vim ~/.dotfiles"
+	alias hosts="sudo vim /etc/hosts"
 else
 	export EDITOR="vi"
 	alias dot="vi ~/.dotfiles"
+	alias hosts="sudo vi /etc/hosts"
 fi
 
 # Prefer US English and use UTF-8
