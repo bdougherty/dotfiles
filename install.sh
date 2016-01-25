@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE}")"
 
 function removeOldFiles() {
-	for file in ~/.{aliases,bash_profile,bash_prompt,bashrc,exports,functions,gitconfig,hushlogin,inputrc,path,wgetrc,hub-completion.sh,git-completion.sh}; do
+	for file in ~/.{aliases,bash_profile,bash_prompt,bashrc,exports,functions,gitconfig,hushlogin,inputrc,path,wgetrc,hub-completion.sh,git-completion.sh,vimrc}; do
 		rm "$file" >/dev/null 2>&1
 	done
 }
@@ -11,6 +11,7 @@ function removeOldFiles() {
 function copyNewFiles() {
 	cp .bash_profile ~/.bash_profile
 	cp .bashrc ~/.bashrc
+	cp .vim ~/.vimrc
 }
 
 function doIt() {
