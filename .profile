@@ -17,7 +17,6 @@ alias resetprefs="killall -SIGTERM cfprefsd"
 alias wow=echo
 alias very=cat
 alias such=grep
-alias dot="subl ~/.dotfiles"
 alias emojis="open http://www.emoji-cheat-sheet.com/"
 alias devdocs="open https://devdocs.io"
 
@@ -169,10 +168,13 @@ export HISTIGNORE="[ \t]*"
 
 if which subl >/dev/null 2>&1; then
 	export EDITOR="subl -w -n"
+	alias dot="subl -n ~/.dotfiles"
 elif which vim >/dev/null 2>&1; then
 	export EDITOR="vim"
+	alias dot="vim ~/.dotfiles"
 else
 	export EDITOR="vi"
+	alias dot="vi ~/.dotfiles"
 fi
 
 # Prefer US English and use UTF-8
