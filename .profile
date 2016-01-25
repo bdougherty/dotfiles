@@ -133,6 +133,14 @@ function proxy() {
 	sudo networksetup -setsecurewebproxystate $interface off
 }
 
+catn() {
+	if [ $# == 0 ]; then
+		echo "No filename provided."
+	else
+		sed = "$1" | paste -s -d '\t\n' - -
+	fi
+}
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 
