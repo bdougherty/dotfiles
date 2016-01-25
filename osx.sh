@@ -87,46 +87,50 @@ defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Safari
-defaults write -app Safari AlwaysShowTabBar -int 1
-defaults write -app Safari AutoFillPasswords -int 0
-defaults write -app Safari IncludeDevelopMenu -int 1
-defaults write -app Safari NewWindowBehavior -int 4
-defaults write -app Safari SearchProviderIdentifier 'com.duckduckgo'
-defaults write -app Safari SendDoNotTrackHTTPHeader -int 1
-defaults write -app Safari ShowFullURLInSmartSearchField -int 1
-defaults write -app Safari ShowSidebarInTopSites -int 1
-defaults write -app Safari TabCreationPolicy -int 0
-defaults write -app Safari WebKitDeveloperExtrasEnabledPreferenceKey -int 1
-defaults write -app Safari WebKitTabToLinksPreferenceKey -int 1
-defaults write -app Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -int 1
-defaults write -app Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks" -int 1
+defaults write com.apple.safari AlwaysShowTabBar -int 1
+defaults write com.apple.safari AutoFillPasswords -int 0
+defaults write com.apple.safari Command1Through9SwitchesTabs -int 0
+defaults write com.apple.safari IncludeDevelopMenu -int 1
+defaults write com.apple.safari NewWindowBehavior -int 4
+defaults write com.apple.safari SearchProviderIdentifier 'com.duckduckgo'
+defaults write com.apple.safari SendDoNotTrackHTTPHeader -int 1
+defaults write com.apple.safari ShowFullURLInSmartSearchField -int 1
+defaults write com.apple.safari ShowOverlayStatusBar -int 1
+defaults write com.apple.safari ShowSidebarInTopSites -int 1
+defaults write com.apple.safari TabCreationPolicy -int 0
+defaults write com.apple.safari WebKitDeveloperExtrasEnabledPreferenceKey -int 1
+defaults write com.apple.safari WebKitTabToLinksPreferenceKey -int 1
+defaults write com.apple.safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -int 1
+defaults write com.apple.safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks" -int 1
 
 # Mail
-defaults write -app Mail ConversationViewNextMessageDirection -int 2
-defaults write -app Mail ConversationViewSortDescending -int 0
-defaults write -app Mail ConversationViewSpansMailboxes -int 1
+defaults write com.apple.mail ConversationViewNextMessageDirection -int 2
+defaults write com.apple.mail ConversationViewSortDescending -int 0
+defaults write com.apple.mail ConversationViewSpansMailboxes -int 1
+defaults write com.apple.mail SwipeAction -int 1
+
+# Fantastical 2
+defaults write com.flexibits.fantastical2.mac HideDockIcon -int 1
+defaults write com.flexibits.fantastical2.mac StatusItemBadge -string StatusItemStyleNone
 
 # Kaleidoscope
-defaults write -app Kaleidoscope KSIgnoreWhitespaceUserDefaultsKey -int 1
-defaults write -app Kaleidoscope SUSendProfileInfo -int 0
-defaults write -app Kaleidoscope KSTextScopeFontInfoUserDefaultsKey -dict \
+defaults write com.blackpixel.kaleidoscope KSIgnoreWhitespaceUserDefaultsKey -int 1
+defaults write com.blackpixel.kaleidoscope SUSendProfileInfo -int 0
+defaults write com.blackpixel.kaleidoscope KSTextScopeFontInfoUserDefaultsKey -dict \
 	fontName -string "FiraMono-Regular" \
 	fontSize -int 12
 
-# Fantastical 2
-defaults write -app "Fantastical 2" HideDockIcon -int 1
-
-# Tower
-defaults write -app Tower GTUserDefaultsAlwaysAutoUpdateSubmodules -int 1
-defaults write -app Tower GTUserDefaultsDefaultCloningDirectory -string "/Users/brad/Documents/Code"
-defaults write -app Tower GTUserDefaultsDiffToolIdentifier -string kaleidoscope
-defaults write -app Tower GTUserDefaultsGitBinary -string "/usr/local/bin/git"
-defaults write -app Tower GTUserDefaultsMergeToolIdentifier -string kaleidoscope
 
 # Script Editor
-defaults write -app "Script Editor" DefaultLanguageType -int 1785946994
-defaults write -app "Script Editor" UsesScriptAssistant -int 1
+defaults write com.apple.ScriptEditor2 DefaultLanguageType -int 1785946994
+defaults write com.apple.ScriptEditor2 UsesScriptAssistant -int 1
 
+# Tower
+defaults write com.fournova.Tower2 GTUserDefaultsAlwaysAutoUpdateSubmodules -int 1
+defaults write com.fournova.Tower2 GTUserDefaultsDefaultCloningDirectory -string "/Users/brad/Documents/Code"
+defaults write com.fournova.Tower2 GTUserDefaultsDiffToolIdentifier -string kaleidoscope
+defaults write com.fournova.Tower2 GTUserDefaultsGitBinary -string "/usr/local/bin/git"
+defaults write com.fournova.Tower2 GTUserDefaultsMergeToolIdentifier -string kaleidoscope
 # Kill all affected apps
 for app in "cfprefsd" "Dock" "Fantastical 2" "Finder" "Mail" "Kaleidoscope" "Safari" "Tower" "SystemUIServer"; do
 	killall "${app}" > /dev/null 2>&1
