@@ -159,11 +159,11 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Enable colors
 export CLICOLOR=1
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    # alias grep='grep --color=auto'
-    # alias fgrep='fgrep --color=auto'
-    # alias egrep='egrep --color=auto'
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+	# alias grep='grep --color=auto'
+	# alias fgrep='fgrep --color=auto'
+	# alias egrep='egrep --color=auto'
 fi
 
 # Larger bash history (allow 32³ entries; default is 500)
