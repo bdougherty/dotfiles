@@ -6,7 +6,8 @@ alias -- -="cd -"
 alias c="pygmentize -O style=monokai -f console256 -g"
 alias fuck="sudo $(history -p \!\!)"
 alias gitjk="history 10 | tail -r | gitjk_cmd"
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ip="curl -s https://brad.is/ip/"
+alias ipv4="dig +short myip.opendns.com @resolver1.opendns.com"
 alias o="open"
 alias oo="open ."
 alias ql="qlmanage -p"
@@ -19,6 +20,17 @@ alias such=grep
 alias dot="subl ~/.dotfiles"
 alias emojis="open http://www.emoji-cheat-sheet.com/"
 alias devdocs="open https://devdocs.io"
+
+function ips {
+	local ip_result=$(ip)
+
+	# get the IPv4 address also if it’s an IPv6 address
+	if [[ $ip_result == *":"* ]]; then
+		echo $(ipv4)
+	fi
+
+	echo $ip_result
+}
 
 function anybar {
 	echo -n $1 | nc -4u -w0 localhost ${2:-1738};
