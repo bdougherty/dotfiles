@@ -10,12 +10,15 @@ brew doctor
 brew update
 
 brew install bash-completion
-brew install git
 brew install gh
+brew install git
 brew install httpie
 brew install imagemagick
+brew install jq
 brew install node
 brew install python
+brew install shellcheck
+brew install vim
 brew install wget
 brew install z
 
