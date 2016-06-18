@@ -1,15 +1,15 @@
 #!/bin/bash
 
 resolution=$(system_profiler SPDisplaysDataType | grep Resolution)
-width=$(echo $resolution | cut -d ' ' -f 2)
-height=$(echo $resolution | cut -d ' ' -f 4)
+width=$(echo "$resolution" | cut -d ' ' -f 2)
+height=$(echo "$resolution" | cut -d ' ' -f 4)
 
-if [[ $(echo $resolution | cut -d ' ' -f 5) == 'Retina' ]]; then
-	width=$(echo $width/2 | bc)
-	height=$(echo $height/2 | bc)
+if [[ $(echo "$resolution" | cut -d ' ' -f 5) == 'Retina' ]]; then
+	width=$(echo "$width/2" | bc)
+	height=$(echo "$height/2" | bc)
 fi
 
-if test $height -gt 1000
+if test "$height" -gt 1000
 then
 	dock_icon_size=48
 	desktop_icon_size=64

@@ -14,6 +14,10 @@ PORT = options.port
 DEBUG = options.debug
 
 class DirectoryHandler(tornado.web.StaticFileHandler):
+    def set_extra_headers(self, path):
+        super(DirectoryHandler, self).set_extra_headers(path)
+        self.set_header('Access-Control-Allow-Origin', '*')
+
     def validate_absolute_path(self, root, absolute_path):
         if os.path.isdir(absolute_path):
             index = os.path.join(absolute_path, 'index.html')

@@ -1,0 +1,89 @@
+[alias]
+	ci = commit
+	st = status
+	co = checkout
+	dt = difftool
+	dts = difftool --staged
+	df = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+	dfs = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --staged --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+	mt = mergetool
+	amend = commit --amend
+	sub = submodule update --init --recursive
+	reb = "!r() { git rebase -i HEAD~; }; r"
+	contributors = shortlog --summary --numbered
+	restore = "!f() { git checkout $(git rev-list -n 1 HEAD -- $1)^ -- $1; }; f"
+	restorec = "!f() { git checkout $(git rev-list -n 1 HEAD -- $1)~1 -- $(git diff --name-status $(git rev-list -n 1 HEAD -- $1)~1 | grep ^D | cut -f 2); }; f"
+	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+	up = !git pull --rebase --prune  && git submodule update --init --recursive
+	ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
+	ksshow = "!f() { local SHA=${1:-HEAD}; git difftool -y -t Kaleidoscope $SHA^..$SHA; }; f"
+	pr = "!f() { git fetch $1 refs/pull/$2/head:pr-$2; }; f"
+	lastchange = log -p --follow -n 1
+[apply]
+	whitespace = fix
+[branch]
+	autosetupmerge = always
+[color "branch"]
+	current = yellow black
+	local = yellow
+	remote = magenta
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red reverse
+	new = green reverse
+	whitespace = white reverse
+[color "diff-highlight"]
+	oldNormal = "red bold"
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan reverse
+	branch = magenta bold
+[core]
+	trustctime = false
+[diff]
+	algorithm = patience
+	tool = Kaleidoscope
+	compactionHeuristic = true
+[difftool]
+	prompt = false
+[difftool "runDiffTool"]
+	cmd = bash -lc 'runDiffTool'
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[fetch]
+	prune = true
+[help]
+	autocorrect = 1
+[pull]
+	rebase = true
+[rebase]
+	autostash = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[gh]
+	host = github.vimeows.com
+[url "git@github.com:bdougherty/"]
+	insteadOf = git://github.com/bdougherty/
+[user]
+	name = Brad Dougherty
+	email = me@brad.is
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[include]
+	path = ~/.gitconfig.local
+[merge]
+	tool = Kaleidoscope
+[mergetool]
+	prompt = false
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"

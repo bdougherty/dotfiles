@@ -15,6 +15,7 @@ brew install git
 brew install httpie
 brew install imagemagick
 brew install jq
+brew install keybase
 brew install node
 brew install python
 brew install shellcheck

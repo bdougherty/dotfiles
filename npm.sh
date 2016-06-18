@@ -1,6 +1,7 @@
 #!/bin/bash
 
 npm install -g caniuse-cmd
+npm install -g diff-so-fancy
 npm install -g doge
 npm install -g eslint
 npm install -g gitjk
@@ -15,3 +16,4 @@ npm install -g remark-lint
 npm install -g sass-lint
 npm install -g sitespeed.io
 npm install -g tldr
+npm install -g updtr

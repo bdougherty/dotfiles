@@ -1,10 +1,12 @@
+#!/usr/bin/env bash
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 alias c="pygmentize -O style=monokai -f console256 -g"
-alias fuck="sudo $(history -p \!\!)"
+alias fuck='sudo $(history -p \!\!)'
 alias gitjk="history 10 | tail -r | gitjk_cmd"
 alias ip="curl -s https://brad.is/ip/"
 alias ipv4="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -20,22 +22,19 @@ alias such=grep
 alias emojis="open http://www.emoji-cheat-sheet.com/"
 alias devdocs="open https://devdocs.io"
 
-function ips {
-	local ip_result=$(ip)
+function ips() {
+	local ip_result
+	ip_result=$(ip)
 
 	# get the IPv4 address also if it’s an IPv6 address
 	if [[ $ip_result == *":"* ]]; then
-		echo $(ipv4)
+		ipv4
 	fi
 
-	echo $ip_result
+	echo "$ip_result"
 }
 
-function anybar {
-	echo -n $1 | nc -4u -w0 localhost ${2:-1738};
-}
-
-function localip {
+function localip() {
 	if which ipconfig >/dev/null 2>&1; then
 		ipconfig getifaddr en0 ; ipconfig getifaddr en1
 	else
@@ -61,14 +60,19 @@ function dataurl() {
 function server() {
 	local port="${1:-8000}"
 	sleep 1 && open "http://localhost:${port}/" &
-	python ~/.dotfiles/server.py --port=$port
+	python ~/.dotfiles/server.py --port="$port"
 }
 
 # Compare original and gzipped file size
 function gz() {
-	local origsize=$(wc -c < "$1")
-	local gzipsize=$(gzip -c "$1" | wc -c)
-	local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
+	local origsize
+	local gzipsize
+	local ratio
+
+	origsize=$(wc -c < "$1")
+	gzipsize=$(gzip -c "$1" | wc -c)
+	ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
+
 	printf "orig: %d bytes\n" "$origsize"
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
@@ -97,7 +101,7 @@ function extract() {
 
 function proxy() {
 	# Only supported on OS X
-	if [[ `uname` != "Darwin" ]]; then
+	if [[ $(uname) != "Darwin" ]]; then
 		echo "This command only works on OS X"
 		return
 	fi
@@ -133,12 +137,9 @@ function proxy() {
 	sudo networksetup -setsecurewebproxystate $interface off
 }
 
-catn() {
-	if [ $# == 0 ]; then
-		echo "No filename provided."
-	else
-		sed = "$1" | paste -s -d '\t\n' - -
-	fi
+## Print a horizontal rule
+rule() {
+	printf "%$(tput cols)s\n"|tr " " "─"
 }
 
 # Case-insensitive globbing (used in pathname expansion)
@@ -169,12 +170,16 @@ fi
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoredups:ignorespace
 
 # Ignore any commands that start with a space
 export HISTIGNORE="[ \t]*"
 
-if which subl >/dev/null 2>&1; then
+if which atom >/dev/null 2>&1; then
+	export EDITOR="atom -w -n"
+	alias dot="atom -n ~/.dotfiles"
+	alias hosts="atom -n /etc/hosts"
+elif which subl >/dev/null 2>&1; then
 	export EDITOR="subl -w -n"
 	alias dot="subl -n ~/.dotfiles"
 	alias hosts="subl -n /etc/hosts"
@@ -198,6 +203,9 @@ export LESS_TERMCAP_md="$ORANGE"
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
+# Opt out of Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
+
 # Do a history search with the up and down arrows
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
@@ -207,8 +215,10 @@ bind '"\e[B":history-search-forward'
 
 # Add more bash completions
 if which brew >/dev/null 2>&1 && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+	# shellcheck source=/dev/null
 	source "$(brew --prefix)/etc/bash_completion"
 elif [ -f /etc/bash_completion ]; then
+	# shellcheck disable=SC1091
 	source /etc/bash_completion
 fi
 
@@ -217,115 +227,19 @@ if which rbenv >/dev/null 2>&1; then eval "$(rbenv init -)"; fi
 
 # Add z
 if which brew >/dev/null 2>&1 && [ -f "$(brew --prefix)/etc/profile.d/z.sh" ]; then
-	source `brew --prefix`/etc/profile.d/z.sh
+	# shellcheck source=/dev/null
+	source "$(brew --prefix)/etc/profile.d/z.sh"
 fi
 
 # Add nice prompt with git stuff
+# shellcheck disable=SC1091
 source ~/.dotfiles/.bash_prompt
 
 # Run any extra stuff
+# shellcheck disable=SC1091
 [ -r .extra ] && source .extra
 
-# From http://stackoverflow.com/a/4025065
-function vercomp() {
-	if [[ $1 == $2 ]]
-		then
-		return 0
-	fi
-	local IFS=.
-	local i ver1=($1) ver2=($2)
-	# fill empty fields in ver1 with zeros
-	for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
-	do
-		ver1[i]=0
-	done
-	for ((i=0; i<${#ver1[@]}; i++))
-	do
-		if [[ -z ${ver2[i]} ]]
-			then
-	# fill empty fields in ver2 with zeros
-	ver2[i]=0
-	fi
-	if ((10#${ver1[i]} > 10#${ver2[i]}))
-		then
-		return 1
-	fi
-	if ((10#${ver1[i]} < 10#${ver2[i]}))
-		then
-		return 2
-	fi
-	done
-	return 0
-}
-
 if which git >/dev/null 2>&1; then
-	git config --global alias.ci commit
-	git config --global alias.st status
-	git config --global alias.co checkout
-	git config --global alias.dt difftool
-	git config --global alias.dts "difftool --staged"
-	git config --global alias.mt mergetool
-	git config --global alias.amend "commit --amend"
-	git config --global alias.sub "submodule update --init --recursive"
-	git config --global alias.reb "!r() { git rebase -i HEAD~$1; }; r"
-	git config --global alias.contributors "shortlog --summary --numbered"
-	git config --global alias.restore '!f() { git checkout $(git rev-list -n 1 HEAD -- $1)^ -- $1; }; f'
-	git config --global alias.restorec '!f() { git checkout $(git rev-list -n 1 HEAD -- $1)~1 -- $(git diff --name-status $(git rev-list -n 1 HEAD -- $1)~1 | grep '^D' | cut -f 2); }; f'
-	git config --global alias.wipe "!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
-	git config --global alias.up "!git pull --rebase --prune $@ && git submodule update --init --recursive"
-	git config --global apply.whitespace fix
-	git config --global branch.autosetupmerge always
-	git config --global color.branch.current 'yellow black'
-	git config --global color.branch.local 'yellow'
-	git config --global color.branch.remote 'magenta'
-	git config --global color.diff.meta 'yellow bold'
-	git config --global color.diff.frag 'magenta bold'
-	git config --global color.diff.old 'red reverse'
-	git config --global color.diff.new 'green reverse'
-	git config --global color.diff.whitespace 'white reverse'
-	git config --global color.status.added 'yellow'
-	git config --global color.status.changed 'green'
-	git config --global color.status.untracked 'cyan reverse'
-	git config --global color.status.branch 'magenta bold'
-	git config --global core.editor "$EDITOR"
-	git config --global core.trustctime false
-	git config --global fetch.prune true
-	git config --global help.autocorrect 100
-	git config --global pull.rebase true
-	git config --global rebase.autostash true
-	git config --global rerere.enabled true
-	git config --global rerere.autoupdate true
-
-	git config --global gh.host "github.vimeows.com"
-	git config --global url."git@github.com:bdougherty/".insteadOf "git://github.com/bdougherty/"
-	git config --global user.name "Brad Dougherty"
-	git config --global user.email "me@brad.is"
-
-	# Set push.default to simple, but only in Git 1.7.11 and higher
-	vercomp `git --version 2>/dev/null 2>&1 | awk '{print $NF; exit}'` '1.7.11' >/dev/null 2>&1
-	if [ $? -lt 2 ]; then
-		git config --global push.default simple
-	else
-		git config --global --unset push.default
-	fi
-
-	# Set the diff/merge tools to be Kaleidoscope if available
-	if which ksdiff >/dev/null 2>&1; then
-		# https://github.com/rustle/KaleidoscopeVCSTidbits
-		git config --global alias.ksreview '!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f'
-		git config --global alias.ksshow '!f() { local SHA=${1:-HEAD}; git difftool -y -t Kaleidoscope $SHA^..$SHA; }; f'
-
-		git config --global diff.tool Kaleidoscope
-		git config --global difftool.prompt false
-		git config --global difftool.Kaleidoscope.cmd "ksdiff --partial-changeset --relative-path \"\$MERGED\" -- \"\$LOCAL\" \"\$REMOTE\""
-		git config --global merge.tool Kaleidoscope
-		git config --global mergetool.prompt false
-		git config --global mergetool.Kaleidoscope.cmd "ksdiff --merge --output \"\$MERGED\" --base \"\$BASE\" -- \"\$LOCAL\" \"\$REMOTE\""
-	elif which vimdiff >/dev/null 2>&1; then
-		git config --global diff.tool vimdiff
-		git config --global difftool.prompt false
-	fi
-
 	# Alias git to gh if it's installed
 	if which gh >/dev/null 2>&1; then eval "$(gh alias -s)"; fi
 fi
