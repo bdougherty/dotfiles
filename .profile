@@ -8,7 +8,7 @@ alias -- -="cd -"
 alias c="pygmentize -O style=monokai -f console256 -g"
 alias fuck='sudo $(history -p \!\!)'
 alias gitjk="history 10 | tail -r | gitjk_cmd"
-alias ip="curl -s https://brad.is/ip/"
+alias ip="curl -s https://ip.brad.is/"
 alias ipv4="dig +short myip.opendns.com @resolver1.opendns.com"
 alias o="open"
 alias oo="open ."
