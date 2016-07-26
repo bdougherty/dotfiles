@@ -6,6 +6,7 @@ if [[ ! "$(type -P brew)" ]]; then
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+brew tap caskroom/cask
 brew doctor
 brew update
 
@@ -22,5 +23,6 @@ brew install shellcheck
 brew install vim
 brew install wget
 brew install z
+brew cask install qlmarkdown
 
 brew cleanup
