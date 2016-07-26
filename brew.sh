@@ -13,6 +13,7 @@ brew update
 brew install bash-completion
 brew install gh
 brew install git
+brew install gpg
 brew install httpie
 brew install imagemagick
 brew install jq
