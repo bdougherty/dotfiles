@@ -50,6 +50,12 @@ if [[ $(uname) == 'Darwin' ]]; then
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		./mas.sh
 	fi
+
+	read -p "Would you like to install Atom packages (y/n) " -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		./atom.sh
+	fi
 fi
 
 # Install yarn packages
