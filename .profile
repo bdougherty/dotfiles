@@ -22,6 +22,10 @@ alias such=grep
 alias emojis="open http://www.emoji-cheat-sheet.com/"
 alias devdocs="open https://devdocs.io"
 
+if which trash >/dev/null 2>&1; then
+	alias rm="trash"
+fi
+
 function ips() {
 	local ip_result
 	ip_result=$(ip)
