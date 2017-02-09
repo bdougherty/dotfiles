@@ -46,11 +46,11 @@ if [[ $(uname) == 'Darwin' ]]; then
 	fi
 fi
 
-# Install npm packages
-if which npm > /dev/null; then
-	read -p "Would you like to install npm packages? (y/n) " -n 1 -r
+# Install yarn packages
+if which yarn > /dev/null; then
+	read -p "Would you like to install yarn packages? (y/n) " -n 1 -r
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		./npm.sh
+		./yarn.sh
 	fi
 fi

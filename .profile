@@ -154,7 +154,7 @@ shopt -s cmdhist
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # export VAGRANT_DEFAULT_PROVIDER=parallels
 
 # Enable colors
