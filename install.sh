@@ -39,10 +39,10 @@ if [[ $(uname) == 'Darwin' ]]; then
 		./brew.sh
 	fi
 
-	read -p "Would you like to set up OS X preferences? (y/n) " -n 1 -r
+	read -p "Would you like to set up macOS preferences? (y/n) " -n 1 -r
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		./osx.sh
+		./macos.sh
 	fi
 
 	read -p "Would you like to install apps from the Mac App Store? (y/n) " -n 1 -r
