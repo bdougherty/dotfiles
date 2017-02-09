@@ -44,6 +44,12 @@ if [[ $(uname) == 'Darwin' ]]; then
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		./osx.sh
 	fi
+
+	read -p "Would you like to install apps from the Mac App Store? (y/n) " -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		./mas.sh
+	fi
 fi
 
 # Install yarn packages
