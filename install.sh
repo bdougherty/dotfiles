@@ -66,3 +66,12 @@ if which yarn > /dev/null; then
 		./yarn.sh
 	fi
 fi
+
+# Install pip packages
+if which pip > /dev/null; then
+	read -p "Would you like to install pip packages? (y/n) " -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		./pip.sh
+	fi
+fi
