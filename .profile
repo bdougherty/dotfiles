@@ -235,6 +235,8 @@ fi
 # shellcheck disable=SC1091
 source ~/.dotfiles/.bash_prompt
 
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+
 # Run any extra stuff
 # shellcheck disable=SC1091
 [ -r .extra ] && source .extra
