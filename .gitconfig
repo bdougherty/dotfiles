@@ -45,6 +45,9 @@
 	branch = magenta bold
 [core]
 	trustctime = false
+	attributesfile = ~/.dotfiles/.gitattributes
+	untrackedCache = true
+	compression = 0
 [diff]
 	algorithm = patience
 	tool = Kaleidoscope
@@ -70,9 +73,12 @@
 	host = github.vimeows.com
 [url "git@github.com:bdougherty/"]
 	insteadOf = git://github.com/bdougherty/
+[url "git@github.com:"]
+	insteadOf = gh:
 [user]
 	name = Brad Dougherty
 	email = me@brad.is
+	signingkey = 704F8E1C
 [push]
 	default = simple
 [filter "lfs"]
@@ -87,3 +93,9 @@
 	prompt = false
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
+[commit]
+	gpgsign = true
+[diff "plist"]
+	textconv = plutil -convert xml1 -o -
+[gpg]
+	program = gpg1
