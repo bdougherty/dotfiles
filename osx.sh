@@ -129,6 +129,28 @@ defaults write com.blackpixel.kaleidoscope KSTextScopeFontInfoUserDefaultsKey -d
 	fontName -string "FiraMono-Regular" \
 	fontSize -int 12
 
+# Reeder
+defaults write com.reederapp.rkit2.mac AppIconUnreadCount -int 2
+defaults write com.reederapp.rkit2.mac AppOrderUnreadItems -int 1
+defaults write com.reederapp.rkit2.mac OpenLinksInBackground -int 1
+defaults write com.reederapp.rkit2.mac PrivateBrowsing -int 1
+defaults write com.reederapp.rkit2.mac WebKitPrivateBrowsingEnabled -int 1
+defaults write com.reederapp.rkit2.mac ShareRKServiceAppNet -dict enabled -int 0
+defaults write com.reederapp.rkit2.mac ShareRKServiceBuffer -dict enabled -int 0
+defaults write com.reederapp.rkit2.mac ShareRKServiceDelicious -dict enabled -int 0
+defaults write com.reederapp.rkit2.mac ShareRKServiceEvernote -dict enabled -int 0
+defaults write com.reederapp.rkit2.mac ShareRKServiceFacebook -dict enabled -int 0
+defaults write com.reederapp.rkit2.mac ShareRKServiceInstapaper -dict enabled -int 1 "show-in-toolbar" -int 1
+defaults write com.reederapp.rkit2.mac ShareRKServiceMailLink -dict enabled -int 1 "show-in-toolbar" -int 1 to -string "me@brad.is"
+defaults write com.reederapp.rkit2.mac ShareRKServiceMarsEdit -dict enabled -int 0
+# defaults write com.reederapp.rkit2.mac ShareRKServiceMessage -dict enabled -int 1
+defaults write com.reederapp.rkit2.mac ShareRKServicePinboard -dict enabled -int 1 "show-in-toolbar" -int 1
+defaults write com.reederapp.rkit2.mac ShareRKServiceQuoteFMRead -dict enabled -int 0
+defaults write com.reederapp.rkit2.mac ShareRKServiceReadItLater -dict enabled -int 0
+defaults write com.reederapp.rkit2.mac ShareRKServiceReadability -dict enabled -int 0
+# defaults write com.reederapp.rkit2.mac ShareRKServiceReadingList -dict enabled -int 1
+# defaults write com.reederapp.rkit2.mac ShareRKServiceSafari -dict enabled -int 1
+defaults write com.reederapp.rkit2.mac ShareRKServiceTwitter -dict enabled -int 0
 
 # Script Editor
 defaults write com.apple.ScriptEditor2 DefaultLanguageType -int 1785946994
@@ -141,6 +163,8 @@ defaults write com.fournova.Tower2 GTUserDefaultsDiffToolIdentifier -string kale
 defaults write com.fournova.Tower2 GTUserDefaultsGitBinary -string "/usr/local/bin/git"
 defaults write com.fournova.Tower2 GTUserDefaultsMergeToolIdentifier -string kaleidoscope
 
+# Transmit
+defaults write com.panic.transmit DoubleClickAction -int 3
 # Tweetbot
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
 defaults write com.tapbots.TweetbotMac openURLInBackground -int 1
