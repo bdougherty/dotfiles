@@ -97,5 +97,3 @@
 	gpgsign = true
 [diff "plist"]
 	textconv = plutil -convert xml1 -o -
-[gpg]
-	program = gpg1
