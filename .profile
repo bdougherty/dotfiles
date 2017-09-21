@@ -250,7 +250,6 @@ export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 # shellcheck disable=SC1091
 [ -r .extra ] && source .extra
 
-if which git >/dev/null 2>&1; then
-	# Alias git to gh if it's installed
-	if which gh >/dev/null 2>&1; then eval "$(gh alias -s)"; fi
+if which git >/dev/null 2>&1 && which hub >/dev/null 2>&1; then
+	eval "$(hub alias -s)"
 fi
