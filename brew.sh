@@ -9,6 +9,7 @@ fi
 brew_formulas=(
 	bash-completion
 	git
+	git-lfs
 	gpg
 	httpie
 	httpstat
