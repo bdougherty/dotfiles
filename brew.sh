@@ -39,10 +39,12 @@ brew_browsers=(
 
 brew_apps=(
 	atom
+	banktivity
 	charles
 	chatology
-	cloak
+	daisydisk
 	dropshare
+	encryptme
 	github-desktop
 	handbrake
 	imageoptim
@@ -52,8 +54,10 @@ brew_apps=(
 	qlmarkdown
 	querious
 	resilio-sync
+	screens
 	sketch
 	steam
+	sublime-text
 	superduper
 	suspicious-package
 	tower

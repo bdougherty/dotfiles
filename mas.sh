@@ -11,8 +11,6 @@ mas install 497799835  # Xcode
 
 mas_apps=(
 	1107421413 # 1Blocker
-	477670270  # 2Do
-	411643860  # DaisyDisk
 	1055511498 # Day One
 	924726344  # Deliveries
 	1173932628 # Drop (color picker)
@@ -25,7 +23,6 @@ mas_apps=(
 	409201541  # Pages
 	407963104  # Pixelmator
 	880001334  # Reeder
-	446107677  # Screens
 	803453959  # Slack
 	413965349  # Soulver
 	896450579  # Textual
