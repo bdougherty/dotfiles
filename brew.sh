@@ -20,6 +20,7 @@ brew_formulas=(
 	node
 	python
 	shellcheck
+	thefuck
 	vim
 	wget
 	yarn
@@ -31,6 +32,8 @@ brew_browsers=(
 	caskroom/versions/firefoxdeveloperedition
 	google-chrome
 	caskroom/versions/google-chrome-canary
+	# opera
+	# caskroom/versions/opera-developer
 	caskroom/versions/safari-technology-preview
 )
 
@@ -52,6 +55,7 @@ brew_apps=(
 	sketch
 	steam
 	superduper
+	suspicious-package
 	tower
 	transmit
 	vlc
@@ -74,6 +78,12 @@ brew_completions=(
 brew doctor
 brew update
 brew install "${brew_formulas[@]}" "${brew_completions[@]}"
-brew cask install "${brew_apps[@]}"
-brew cask install --appdir="/Applications" "${brew_browsers[@]}" "${brew_global_apps[@]}"
+
+read -p "Would you like to install apps with Homebrew? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	brew cask install "${brew_apps[@]}"
+	brew cask install --appdir="/Applications" "${brew_browsers[@]}" "${brew_global_apps[@]}"
+fi
+
 brew cleanup
