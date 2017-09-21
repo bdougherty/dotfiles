@@ -6,7 +6,6 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 alias c="pygmentize -O style=monokai -f console256 -g"
-alias fuck='sudo $(history -p \!\!)'
 alias gitjk="history 10 | tail -r | gitjk_cmd"
 alias ip="curl -s https://ip.brad.is/"
 alias ipv4="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -24,6 +23,12 @@ alias devdocs="open https://devdocs.io"
 
 if which trash >/dev/null 2>&1; then
 	alias rm="trash"
+fi
+
+if which thefuck >/dev/null 2>&1; then
+	eval "$(thefuck --alias)"
+else
+	alias fuck='sudo $(history -p \!\!)'
 fi
 
 function ips() {
