@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source /usr/local/share/antigen/antigen.zsh
+source ~/.dotfiles/antigen/antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
