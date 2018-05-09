@@ -77,5 +77,5 @@ else
 	hostStyle="${yellow}";
 fi;
 
-export PS1="\[${bold}${userStyle}\]\u \[$white\]at \[$hostStyle\]\h \[$white\]in \[$green\]\w\[$white\]\$(prompt_git \"${white} on ${violet}\" \"${blue}\")\n\[${white}\]❯: \[$reset\]"
-export PS2="\[${yellow}\]→ \[${reset}\]";
+PS1="\[${bold}${userStyle}\]\u \[$white\]at \[$hostStyle\]\h \[$white\]in \[$green\]\w\[$white\]\$(prompt_git \"${white} on ${violet}\" \"${blue}\")\n\[${white}\]❯: \[$reset\]"
+PS2="\[${yellow}\]→ \[${reset}\]";

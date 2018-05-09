@@ -1,0 +1,94 @@
+[include]
+	path = ~/.gitconfig.local
+
+[alias]
+	am = commit --amend --no-edit
+	ame = commit --amend
+	ci = commit
+	co = checkout
+	df = diff --color
+	dfs = diff --staged --color
+	dt = difftool
+	dts = difftool --staged
+	mt = mergetool
+	nb = "!git checkout -b $(superb)-$(dog-names | awk '{print tolower($0)}')"
+	patch = "!git --no-pager diff --no-color"
+	pr = "!f() { git fetch $1 refs/pull/$2/head:pr-$2; }; f"
+	st = status
+	sub = submodule update --init --recursive
+	conflicts = "!git ls-files -u | awk '{print $4}' | sort -u"
+	edit-conflicts = "!$EDITOR $(git conflicts)"
+
+[apply]
+	whitespace = fix
+
+[branch]
+	autosetupmerge = always
+
+[color]
+	ui = true
+
+[color "diff"]
+	meta = "yellow"
+	frag = "magenta bold"
+	commit = "yellow bold"
+	old = "red bold"
+	new = "green bold"
+	whitespace = "red reverse"
+
+[color "diff-highlight"]
+	oldNormal = "red bold"
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
+
+[core]
+	trustctime = false
+	untrackedCache = true
+	compression = 0
+	pager = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+
+[diff]
+	algorithm = patience
+	compactionHeuristic = true
+	colorMoved = zebra
+
+[diff "plist"]
+	textconv = plutil -convert xml1 -o -
+
+[difftool]
+	prompt = false
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[difftool "VSCode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+
+[fetch]
+	prune = true
+
+[gpg]
+	program = gpg
+
+[help]
+	autocorrect = 1
+
+[mergetool]
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
+
+[pull]
+	rebase = true
+
+[push]
+	default = simple
+
+[rebase]
+	autostash = true
+
+[rerere]
+	enabled = true
+	autoupdate = true

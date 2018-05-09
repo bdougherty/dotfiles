@@ -1,14 +1,18 @@
 # Brad’s dotfiles
 
-## Installation
+After cloning the repo (doesn't matter where), run `./install` to set everything up.
 
-```bash
-git clone git://github.com/bdougherty/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && source install.sh
-```
+Installation powered by [Dotbot](https://github.com/anishathalye/dotbot).
 
-## Updating
+## Local Customizations
 
-```bash
-cd ~/.dotfiles
-git pull
-```
+There are a number of hooks to make local customizations:
+
+* `git`: `~/.gitconfig.local`
+* `zsh` and `bash`: `~/.shell.local.before` / `~/.shell.local.after` to run before or after the main profile
+* `bash` only: `~/.bashrc.local.before` / `~/.bashrc.local.after` to run before or after the main bash profile
+* `zsh` only: `~/.zshrc.local.before` / `~/.zshrc.local.after` to run before or after the main zsh profile
+
+## License
+
+MIT © [Brad Dougherty](https://brad.is)

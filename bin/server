@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+import os
+import http.server
+import socketserver
+
+PORT = 8000
+
+Handler = http.server.SimpleHTTPRequestHandler
+
+Handler.extensions_map.update({
+	'.gitignore': 'text/plain',
+	'.m3u8': 'application/vnd.apple.mpegurl',
+	'.vtt': 'text/vtt',
+	'.webapp': 'application/x-web-app-manifest+json'
+})
+
+with socketserver.TCPServer(('', PORT), Handler) as httpd:
+	url = 'http://localhost:%d' % PORT
+	print('Serving at %s' % url)
+	os.system('open %s' % url)
+
+	httpd.serve_forever()

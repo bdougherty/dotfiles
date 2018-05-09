@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+function header() {
+	echo -e "$(tput sgr 0 1)$(tput setaf 6)$1$(tput sgr0)"
+}
+
+if command -v softwareupdate >/dev/null 2>&1; then
+	header "Updating macOS…"
+	sudo -v
+	sudo softwareupdate -i -a
+fi
+
+if command -v brew >/dev/null 2>&1; then
+	header "Updating Homebrew…"
+	brew update
+	brew upgrade --all
+	brew cleanup
+	brew prune
+fi
+
+if command -v apt-get >/dev/null 2>&1; then
+	header "Updating apt…"
+	sudo -v
+	sudo apt-get update
+	sudo apt-get upgrade -y -u
+fi
+
+if command -v npm >/dev/null 2>&1; then
+	header "Updating npm…"
+	npm install -g npm@latest
+	npm update -g
+fi
+
+nyan

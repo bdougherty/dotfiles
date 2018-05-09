@@ -1,26 +1,37 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-resolution=$(system_profiler SPDisplaysDataType | grep Resolution)
-width=$(echo "$resolution" | cut -d ' ' -f 2)
-height=$(echo "$resolution" | cut -d ' ' -f 4)
+calculate_dock_and_desktop_icon_sizes() {
+	local resolution
+	local width
+	local height
 
-if [[ $(echo "$resolution" | cut -d ' ' -f 5) == 'Retina' ]]; then
-	width=$(echo "$width/2" | bc)
-	height=$(echo "$height/2" | bc)
-fi
+	resolution=$(system_profiler SPDisplaysDataType | grep Resolution | sed 's/^ *//;s/ *$//')
+	width=$(echo "$resolution" | cut -d ' ' -f 2)
+	height=$(echo "$resolution" | cut -d ' ' -f 4)
 
-if test "$height" -gt 1000
-then
-	dock_icon_size=48
-	desktop_icon_size=64
-else
-	dock_icon_size=34
-	desktop_icon_size=52
-fi
+	if [[ $(echo "$resolution" | cut -d ' ' -f 5) == 'Retina' ]]; then
+		width=$(echo "$width/2" | bc)
+		height=$(echo "$height/2" | bc)
+	fi
 
-# Dark mode and reduce transparency
+	if [[ "$height" -gt 1000 ]]; then
+		dock_icon_size=48
+		desktop_icon_size=64
+	else
+		dock_icon_size=34
+		desktop_icon_size=52
+	fi
+
+	export dock_icon_size
+	export desktop_icon_size
+}
+
+
+#  -- System Preferences -- #
+
+
+# Dark mode
 defaults write .GlobalPreferences AppleInterfaceStyle -string "Dark"
-defaults write com.apple.universalaccess reduceTransparency -int 1
 
 # Disable dashboard
 defaults write com.apple.dashboard enabled-state -int 1
@@ -68,7 +79,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
-# Set the icon size of Dock items to 34 or 48 pixels depending on screen size
+# Set the icon size of Dock icons depending on screen size
 defaults write com.apple.dock tilesize -int $dock_icon_size
 
 # Set up desktop icon view
@@ -92,86 +103,81 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
-# Safari
-defaults write com.apple.safari AlwaysShowTabBar -int 1
-defaults write com.apple.safari AutoFillPasswords -int 0
-defaults write com.apple.safari Command1Through9SwitchesTabs -int 0
-defaults write com.apple.safari IncludeDevelopMenu -int 1
-defaults write com.apple.safari NewWindowBehavior -int 4
-defaults write com.apple.safari SearchProviderIdentifier 'com.duckduckgo'
-defaults write com.apple.safari SendDoNotTrackHTTPHeader -int 1
-defaults write com.apple.safari ShowFullURLInSmartSearchField -int 1
-defaults write com.apple.safari ShowOverlayStatusBar -int 1
-defaults write com.apple.safari ShowSidebarInTopSites -int 1
-defaults write com.apple.safari TabCreationPolicy -int 0
-defaults write com.apple.safari WebKitDeveloperExtrasEnabledPreferenceKey -int 1
-defaults write com.apple.safari WebKitTabToLinksPreferenceKey -int 1
-defaults write com.apple.safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -int 1
-defaults write com.apple.safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks" -int 1
-
-# Mail
-defaults write com.apple.mail ConversationViewNextMessageDirection -int 2
-defaults write com.apple.mail ConversationViewSortDescending -int 0
-defaults write com.apple.mail ConversationViewSpansMailboxes -int 1
-defaults write com.apple.mail SwipeAction -int 1
-
 # Don’t open Photos when plugging in an iPhone
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
 
-# Fantastical 2
-defaults write com.flexibits.fantastical2.mac HideDockIcon -int 1
-defaults write com.flexibits.fantastical2.mac StatusItemBadge -string StatusItemStyleNone
 
-# Kaleidoscope
-defaults write com.blackpixel.kaleidoscope KSIgnoreWhitespaceUserDefaultsKey -int 1
-defaults write com.blackpixel.kaleidoscope SUSendProfileInfo -int 0
-defaults write com.blackpixel.kaleidoscope KSTextScopeFontInfoUserDefaultsKey -dict \
-	fontName -string "FiraMono-Regular" \
-	fontSize -int 12
+# -- App Preferences -- #
+
+
+# Fantastical 2
+defaults write -app "Fantastical 2" HideDockIcon -int 1
+defaults write -app "Fantastical 2" StatusItemBadge -string StatusItemStyleNone
+
+# Mail
+defaults write -app Mail ConversationViewNextMessageDirection -int 2
+defaults write -app Mail ConversationViewSortDescending -int 0
+defaults write -app Mail ConversationViewSpansMailboxes -int 1
+defaults write -app Mail SwipeAction -int 1
 
 # Reeder
-defaults write com.reederapp.rkit2.mac AppIconUnreadCount -int 2
-defaults write com.reederapp.rkit2.mac AppOrderUnreadItems -int 1
-defaults write com.reederapp.rkit2.mac OpenLinksInBackground -int 1
-defaults write com.reederapp.rkit2.mac PrivateBrowsing -int 1
-defaults write com.reederapp.rkit2.mac WebKitPrivateBrowsingEnabled -int 1
-defaults write com.reederapp.rkit2.mac ShareRKServiceAppNet -dict enabled -int 0
-defaults write com.reederapp.rkit2.mac ShareRKServiceBuffer -dict enabled -int 0
-defaults write com.reederapp.rkit2.mac ShareRKServiceDelicious -dict enabled -int 0
-defaults write com.reederapp.rkit2.mac ShareRKServiceEvernote -dict enabled -int 0
-defaults write com.reederapp.rkit2.mac ShareRKServiceFacebook -dict enabled -int 0
-defaults write com.reederapp.rkit2.mac ShareRKServiceInstapaper -dict enabled -int 1 "show-in-toolbar" -int 1
-defaults write com.reederapp.rkit2.mac ShareRKServiceMailLink -dict enabled -int 1 "show-in-toolbar" -int 1 to -string "me@brad.is"
-defaults write com.reederapp.rkit2.mac ShareRKServiceMarsEdit -dict enabled -int 0
-# defaults write com.reederapp.rkit2.mac ShareRKServiceMessage -dict enabled -int 1
-defaults write com.reederapp.rkit2.mac ShareRKServicePinboard -dict enabled -int 1 "show-in-toolbar" -int 1
-defaults write com.reederapp.rkit2.mac ShareRKServiceQuoteFMRead -dict enabled -int 0
-defaults write com.reederapp.rkit2.mac ShareRKServiceReadItLater -dict enabled -int 0
-defaults write com.reederapp.rkit2.mac ShareRKServiceReadability -dict enabled -int 0
-# defaults write com.reederapp.rkit2.mac ShareRKServiceReadingList -dict enabled -int 1
-# defaults write com.reederapp.rkit2.mac ShareRKServiceSafari -dict enabled -int 1
-defaults write com.reederapp.rkit2.mac ShareRKServiceTwitter -dict enabled -int 0
+defaults write -app Reeder AppIconUnreadCount -int 2
+defaults write -app Reeder AppOrderUnreadItems -int 1
+defaults write -app Reeder OpenLinksInBackground -int 1
+defaults write -app Reeder PrivateBrowsing -int 1
+defaults write -app Reeder WebKitPrivateBrowsingEnabled -int 1
+defaults write -app Reeder ShareRKServiceInstapaper -dict enabled -int 0 "show-in-toolbar" -int 0
+defaults write -app Reeder ShareRKServicePocket -dict enabled -int 0 "show-in-toolbar" -int 0
+defaults write -app Reeder ShareRKServiceReadingList -dict enabled -int 1 "show-in-toolbar" -int 1
+defaults write -app Reeder ShareRKServiceEvernote -dict enabled -int 0 "show-in-toolbar" -int 0
+defaults write -app Reeder ShareRKServiceMarsEdit -dict enabled -int 0 "show-in-toolbar" -int 0
+defaults write -app Reeder ShareRKServicePinboard -dict enabled -int 1 "show-in-toolbar" -int 1
+defaults write -app Reeder ShareRKServiceTwitter -dict enabled -int 0 "show-in-toolbar" -int 0
+defaults write -app Reeder ShareRKServiceFacebook -dict enabled -int 0 "show-in-toolbar" -int 0
+defaults write -app Reeder ShareRKServiceBuffer -dict enabled -int 0 "show-in-toolbar" -int 0
+
+# Safari
+defaults write -app Safari AlwaysShowTabBar -int 1
+defaults write -app Safari AutoFillPasswords -int 0
+defaults write -app Safari Command1Through9SwitchesTabs -int 0
+defaults write -app Safari IncludeDevelopMenu -int 1
+defaults write -app Safari NewWindowBehavior -int 4
+defaults write -app Safari SearchProviderIdentifier "com.duckduckgo"
+defaults write -app Safari SendDoNotTrackHTTPHeader -int 1
+defaults write -app Safari ShowFullURLInSmartSearchField -int 1
+defaults write -app Safari ShowOverlayStatusBar -int 1
+defaults write -app Safari ShowSidebarInTopSites -int 1
+defaults write -app Safari TabCreationPolicy -int 0
+defaults write -app Safari UserStyleSheetLocationURLString "~/.config/safari/user.css"
+defaults write -app Safari WebKitDeveloperExtrasEnabledPreferenceKey -int 1
+defaults write -app Safari WebKitTabToLinksPreferenceKey -int 1
+defaults write -app Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -int 1
+defaults write -app Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks" -int 1
+defaults write -app Safari "ReaderConfiguration.themeName" "sepia"
+defaults write -app Safari "ReaderConfiguration.fontFamilyNameForLanguageTag.en" "Charter"
 
 # Script Editor
-defaults write com.apple.ScriptEditor2 DefaultLanguageType -int 1785946994
-defaults write com.apple.ScriptEditor2 UsesScriptAssistant -int 1
+defaults write -app "Script Editor" DefaultLanguageType -int 1785946994
+defaults write -app "Script Editor" UsesScriptAssistant -int 1
 
-# Tower
-defaults write com.fournova.Tower2 GTUserDefaultsAlwaysAutoUpdateSubmodules -int 1
-defaults write com.fournova.Tower2 GTUserDefaultsDefaultCloningDirectory -string "/Users/brad/Documents/Code"
-defaults write com.fournova.Tower2 GTUserDefaultsDiffToolIdentifier -string kaleidoscope
-defaults write com.fournova.Tower2 GTUserDefaultsGitBinary -string "/usr/local/bin/git"
-defaults write com.fournova.Tower2 GTUserDefaultsMergeToolIdentifier -string kaleidoscope
+# Terminal
+defaults write -app Terminal "Default Window Settings" "One Dark"
+defaults write -app Terminal "Startup Window Settings" "One Dark"
+
+# Things
+# defaults write -app Things3 CCDockCountType -int 1
+# defaults write -app Things3 PreserveWindowWidthWhenResizingSidebar -int 1
+# defaults write -app Things3 TodayWidgetCanLaunchThings -int 1
+# defaults write -app Things3 UriSchemeEnabled -int 1
 
 # Transmit
-defaults write com.panic.transmit DoubleClickAction -int 3
-# Tweetbot
-defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
-defaults write com.tapbots.TweetbotMac openURLInBackground -int 1
-defaults write com.tapbots.TweetbotMac roundAvatars -int 0
-defaults write com.tapbots.TweetbotMac showStatusItem -int 0
+defaults write -app Transmit DoubleClickAction -int 3
 
-# Kill all affected apps
-for app in "cfprefsd" "Dock" "Fantastical 2" "Finder" "Mail" "Kaleidoscope" "Safari" "Tower" "SystemUIServer"; do
-	killall "${app}" > /dev/null 2>&1
-done
+# Tweetbot
+defaults write -app Tweetbot badgesEnabled -int 0
+defaults write -app Tweetbot displayNameType -int 3
+defaults write -app Tweetbot OpenURLsDirectly YES
+defaults write -app Tweetbot openURLInBackground -int 1
+defaults write -app Tweetbot roundAvatars -int 0
+defaults write -app Tweetbot showStatusItem -int 0
+defaults write -app Tweetbot soundType -int 1

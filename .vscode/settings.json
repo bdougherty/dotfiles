@@ -1,0 +1,12 @@
+{
+	"files.associations": {
+		"bash_profile": "shellscript",
+		"bashrc": "shellscript",
+		"editorconfig": "properties",
+		"gitconfig": "properties",
+		"curlrc": "properties",
+		"npmrc": "properties",
+		"zshrc": "shellscript"
+	},
+	"python.pythonPath": "/usr/local/bin/python3",
+}

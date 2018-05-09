@@ -1,0 +1,23 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.bash:
+    ~/.bash_profile:
+    ~/.bashrc:
+    ~/.curlrc:
+    ~/.editorconfig:
+    ~/.gitconfig:
+    ~/.hyper.js:
+    ~/.npmrc:
+    ~/.shell:
+    ~/.zsh:
+    ~/.zshrc:
+
+- brewfile:
+    file: Brewfile
