@@ -148,7 +148,7 @@ defaults write -app Safari ShowFullURLInSmartSearchField -int 1
 defaults write -app Safari ShowOverlayStatusBar -int 1
 defaults write -app Safari ShowSidebarInTopSites -int 1
 defaults write -app Safari TabCreationPolicy -int 0
-defaults write -app Safari UserStyleSheetLocationURLString "~/.config/safari/user.css"
+defaults write -app Safari UserStyleSheetLocationURLString "~/.dotfiles/safari/user.css"
 defaults write -app Safari WebKitDeveloperExtrasEnabledPreferenceKey -int 1
 defaults write -app Safari WebKitTabToLinksPreferenceKey -int 1
 defaults write -app Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -int 1
