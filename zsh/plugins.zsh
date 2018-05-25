@@ -8,4 +8,6 @@ antigen bundle zsh-users/zsh-history-substring-search # needs to be after syntax
 antigen bundle djui/alias-tips
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
+antigen bundle robbyrussell/oh-my-zsh lib/functions
+antigen bundle robbyrussell/oh-my-zsh lib/termsupport
 antigen apply
