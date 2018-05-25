@@ -9,6 +9,3 @@ antigen bundle djui/alias-tips
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
 antigen apply
-
-autoload -U promptinit; promptinit
-prompt pure
