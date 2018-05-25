@@ -1,9 +1,6 @@
 html,
 body,
 * {
-	-webkit-font-smoothing: auto !important;
-}
-
-.repository-content .tab-size[data-tab-size] {
 	tab-size: 4 !important;
+	-webkit-font-smoothing: auto !important;
 }
