@@ -16,10 +16,14 @@ if command -v code >/dev/null 2>&1; then
 	export EDITOR="code"
 	alias dot="code -n ~/.dotfiles"
 	alias hosts="code -n /etc/hosts"
-else
+elif command -v vim >/dev/null 2>&1; then
 	export EDITOR="vim"
 	alias dot="vim ~/.dotfiles"
 	alias hosts="sudo vim /etc/hosts"
+else
+	export EDITOR="nano"
+	alias dot="nano ~/.dotfiles"
+	alias hosts="sudo nano /etc/hosts"
 fi
 
 # Enable colors
