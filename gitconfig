@@ -63,7 +63,7 @@
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 [difftool "VSCode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
+	cmd = code --new-window --wait --diff $LOCAL $REMOTE
 
 [fetch]
 	prune = true

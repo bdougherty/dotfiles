@@ -13,7 +13,7 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
 if command -v code >/dev/null 2>&1; then
-	export EDITOR="code"
+	export GIT_EDITOR="code -w -n"
 	alias dot="code -n ~/.dotfiles"
 	alias hosts="code -n /etc/hosts"
 elif command -v vim >/dev/null 2>&1; then
