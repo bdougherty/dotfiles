@@ -46,7 +46,7 @@
 	trustctime = false
 	untrackedCache = true
 	compression = 0
-	pager = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+	pager = less --tabs=4 -RFX
 
 [diff]
 	algorithm = patience
@@ -79,6 +79,9 @@
 
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
+
+[pager]
+	diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
 
 [pull]
 	rebase = true
