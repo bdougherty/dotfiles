@@ -1,5 +1,6 @@
 brew "bash-completion"
 brew "diff-so-fancy"
+brew "editorconfig"
 brew "git"
 brew "git-lfs"
 brew "gpg"

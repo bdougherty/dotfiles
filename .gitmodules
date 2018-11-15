@@ -7,3 +7,9 @@
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "vim/pack/tpope/start/sensible"]
+	path = vim/pack/tpope/start/sensible
+	url = git@github.com:tpope/vim-sensible.git
+[submodule "vim/pack/editorconfig/start/editorconfig"]
+	path = vim/pack/editorconfig/start/editorconfig
+	url = git@github.com:editorconfig/editorconfig-vim.git

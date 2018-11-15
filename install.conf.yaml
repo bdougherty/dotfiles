@@ -16,6 +16,8 @@
     ~/.hyper.js:
     ~/.npmrc:
     ~/.shell:
+	~/.vim:
+	~/.vimrc:
     ~/.zsh:
     ~/.zshrc:
 
