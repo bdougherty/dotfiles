@@ -95,3 +95,6 @@
 [rerere]
 	enabled = true
 	autoupdate = true
+
+[protocol]
+	version = 2
