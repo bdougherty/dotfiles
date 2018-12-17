@@ -6,7 +6,8 @@
 		"gitconfig": "properties",
 		"curlrc": "properties",
 		"npmrc": "properties",
+		"vimrc": "viml",
 		"zshrc": "shellscript"
 	},
-	"python.pythonPath": "/usr/local/bin/python3",
+	"python.pythonPath": "/usr/local/bin/python3"
 }
