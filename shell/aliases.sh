@@ -85,9 +85,11 @@ function md() {
 
 # Prevent npm use in a yarn project
 function npm() {
-	if [ -f "yarn.lock" ]; then
-		echo "$(tput sgr 0 1)$(tput setaf 1)You should use Yarn for this project.$(tput sgr0)"
-		return
+	if [[ "$1" != "run" ]]; then
+		if [ -f "yarn.lock" ]; then
+			echo "$(tput sgr 0 1)$(tput setaf 1)You should use Yarn for this project.$(tput sgr0)"
+			return
+		fi
 	fi
 
 	command npm "$@"
