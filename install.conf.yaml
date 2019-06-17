@@ -6,6 +6,9 @@
 - clean: ['~']
 
 - link:
+    ~/.config/youtube-dl:
+      create: true
+      path: config/youtube-dl
     ~/.dotfiles: ''
     ~/.bash:
     ~/.bash_profile:

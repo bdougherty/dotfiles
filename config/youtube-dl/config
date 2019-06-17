@@ -1,0 +1,2 @@
+# Download best mp4 format available or any other best if no mp4 available
+-f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'
