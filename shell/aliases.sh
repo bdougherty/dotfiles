@@ -152,3 +152,40 @@ function refreshproxy() {
 		return 1
 	fi
 }
+
+# Restart the computer in a remote-friendly way
+function restart() {
+	local prompt="Are you sure you want to restart (Y/n)? "
+
+	if [[ $ZSH_VERSION ]]; then
+		echo -n "$prompt"
+		# shellcheck disable=2162
+		read -q -s confirm
+	else
+		# shellcheck disable=2162
+		read -n 1 -s -p "$prompt" confirm
+	fi
+
+	if [[ ! $confirm =~ ^[Yy]$ ]]; then
+		return 0
+	fi
+
+	echo ""
+
+	if command -v fdesetup >/dev/null 2>&1; then
+		supports=$(fdesetup supportsauthrestart)
+
+		if [[ "$supports" == "true" ]]; then
+			sudo fdesetup authrestart
+			return 0
+		fi
+	fi
+
+	if command -v shutdown >/dev/null 2>&1; then
+		sudo shutdown -r now
+		return 0
+	fi
+
+	echo "Don’t know how to shut down this machine, sorry."
+	return 1
+}
