@@ -94,6 +94,13 @@ function ip() {
 	echo "Public: $ip_result"
 }
 
+function keep-running() {
+	until "$@"; do
+		echo "Process $* crashed with exit code $?. Respawning..." >&2
+		sleep 1
+	done
+}
+
 # Create a new directory and enter it
 function md() {
 	mkdir -p "$@" && cd "$@" || return
