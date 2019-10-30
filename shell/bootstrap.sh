@@ -39,3 +39,8 @@ fi
 
 GPG_TTY=$(tty)
 export GPG_TTY
+
+if command -v mkcert >/dev/null 2>&1; then
+	NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+	export NODE_EXTRA_CA_CERTS
+fi
