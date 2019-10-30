@@ -24,6 +24,18 @@ if command -v trash >/dev/null 2>&1; then
 	alias rm="trash"
 fi
 
+# Flush the DNS cache
+function flushdns() {
+	if command -v mDNSResponder >/dev/null 2>&1; then
+		sudo killall -HUP mDNSResponder
+	elif command -v systemd-resolve >/dev/null 2>&1; then
+		sudo systemd-resolve --flush-caches
+	else
+		echo "Don’t know how to clear the DNS cache on this machine, sorry."
+		return 1
+	fi
+}
+
 # Clone a git repo and cd into it
 function gc() {
 	git clone --recursive "$1" && cd "$(basename "${1%.git}")" || return
@@ -101,5 +113,31 @@ function o() {
 		open .
 	else
 		open "$@"
+	fi
+}
+
+function refreshproxy() {
+	if command -v networksetup >/dev/null 2>&1; then
+		local service="Wi-Fi"
+		local proxyUrl="http://127.0.0.1:5525/proxy.pac"
+
+		# Turn it off if it's on
+		if networksetup -getautoproxyurl Wi-Fi | grep -q 'Enabled: Yes'; then
+			echo "Disabling proxy:"
+			networksetup -getautoproxyurl "$service"
+			networksetup -setautoproxystate "$service" off
+			echo ""
+		fi
+
+		# Enable proxy if hiproxy is running
+		if pgrep -f hiproxy >/dev/null 2>&1; then
+			echo "Enabling hiproxy:"
+			networksetup -setautoproxyurl "$service" "$proxyUrl"
+			networksetup -setautoproxystate "$service" on
+			networksetup -getautoproxyurl "$service"
+		fi
+	else
+		echo "Don’t know how to update the proxy settings on this machine, sorry."
+		return 1
 	fi
 }
