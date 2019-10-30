@@ -6,6 +6,7 @@
 	ame = commit --amend
 	ci = commit
 	co = checkout
+	com = checkout master
 	df = diff --color
 	dfs = diff --staged --color
 	dt = difftool
@@ -16,6 +17,7 @@
 	pr = "!f() { git fetch $1 refs/pull/$2/head:pr-$2; }; f"
 	st = status
 	sub = submodule update --init --recursive
+	po = push -u origin
 	conflicts = "!git ls-files -u | awk '{print $4}' | sort -u"
 	edit-conflicts = "!$EDITOR $(git conflicts)"
 
