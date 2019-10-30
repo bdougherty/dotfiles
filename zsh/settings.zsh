@@ -62,3 +62,6 @@ function () {
 		rm $GIT_ZSH_COMPLETIONS_FILE_PATH
 	fi
 }
+
+bindkey "^[[" _dirnav_parent # alt-[
+bindkey "^[]" _dirnav_child # alt-]
