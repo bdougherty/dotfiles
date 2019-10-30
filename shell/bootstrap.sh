@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-export PATH="$HOME/.dotfiles/bin:$PATH"
+export DOTFILE_PATH="$HOME/.dotfiles"
+export PATH="$DOTFILE_PATH/bin:$PATH"
 
 # Prefer US English and use UTF-8
 export LANG="en_US"

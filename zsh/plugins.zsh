@@ -1,13 +1,4 @@
 #!/usr/bin/env zsh
 
-source ~/.dotfiles/antigen/antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-history-substring-search # needs to be after syntax-highlighting
-antigen bundle djui/alias-tips
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
-antigen bundle robbyrussell/oh-my-zsh lib/functions
-antigen bundle robbyrussell/oh-my-zsh lib/termsupport
-antigen apply
+source $DOTFILE_PATH/antigen/antigen.zsh
+antigen init $DOTFILE_PATH/zsh/.antigenrc
