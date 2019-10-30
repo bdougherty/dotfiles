@@ -57,7 +57,11 @@ function gz() {
 
 # Search history
 function hs() {
-	history | grep -i "$@"
+	if [[ $ZSH_VERSION ]]; then
+		history 1 | grep -i "$@"
+	else
+		history | grep -i "$@"
+	fi
 }
 
 # Get local and public ip addresses
