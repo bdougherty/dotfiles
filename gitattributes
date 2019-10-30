@@ -1,0 +1,4 @@
+*.plist diff=plist
+npm-shrinkwrap.json merge=npm-merge-driver
+package-lock.json merge=npm-merge-driver
+yarn.lock merge=yarn-merge-driver

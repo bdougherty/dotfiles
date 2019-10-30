@@ -3,6 +3,7 @@
 		"bash_profile": "shellscript",
 		"bashrc": "shellscript",
 		"editorconfig": "properties",
+		"gitattributes": "properties",
 		"gitconfig": "properties",
 		"curlrc": "properties",
 		"npmrc": "properties",

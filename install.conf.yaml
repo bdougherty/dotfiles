@@ -15,6 +15,7 @@
     ~/.bashrc:
     ~/.curlrc:
     ~/.editorconfig:
+    ~/.gitattributes:
     ~/.gitconfig:
     ~/.hyper.js:
     ~/.npmrc:
