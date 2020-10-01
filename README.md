@@ -1,8 +1,29 @@
-# Brad’s dotfiles
+# Brad’s Dotfiles
 
-After cloning the repo (doesn't matter where), run `./install` to set everything up.
+My dotfiles, powered by [Dotbot](https://github.com/anishathalye/dotbot).
 
-Installation powered by [Dotbot](https://github.com/anishathalye/dotbot).
+## Installation
+
+First, clone the repo into `~/.dotfiles`:
+
+```shell
+git clone https://github.com/bdougherty/dotfiles.git .dotfiles
+cd .dotfiles
+```
+
+Then run the installer with optional extra configs. For servers, run:
+
+```shell
+./install
+```
+
+For Macs, run:
+
+```shell
+./install desktop mac
+```
+
+`desktop` will install npm packages, and `mac` will install Homebrew and associated packages.
 
 ## Local Customizations
 

@@ -6,5 +6,5 @@ if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-source $DOTFILE_PATH/antigen/antigen.zsh
-antigen init $DOTFILE_PATH/zsh/.antigenrc
+source $DOTFILE_PATH/shells/zsh/antigen/antigen.zsh
+antigen init $DOTFILE_PATH/shells/zsh/.antigenrc

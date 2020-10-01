@@ -28,7 +28,6 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zsh"
 
-
 # Browsers
 cask_args appdir: "/Applications"
 cask "firefox-developer-edition"

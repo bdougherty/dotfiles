@@ -8,10 +8,10 @@ if [ -f ~/.bashrc.local.before ]; then
 	source ~/.bashrc.local.before
 fi
 
-source ~/.bash/settings.bash
-source ~/.shell/bootstrap.sh
-source ~/.shell/aliases.sh
-source ~/.bash/prompt.bash
+source ~/.dotfiles/shells/bash/settings.bash
+source ~/.dotfiles/shells/all/bootstrap.sh
+source ~/.dotfiles/shells/all/aliases.sh
+source ~/.dotfiles/shells/bash/prompt.bash
 
 if [ -f ~/.bashrc.local.after ]; then
 	source ~/.bashrc.local.after

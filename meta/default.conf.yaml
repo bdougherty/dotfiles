@@ -1,0 +1,18 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~/', '~/.config']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.bash_profile: shells/bash_profile
+    ~/.bashrc: shells/bashrc
+    ~/.curlrc: configs/curlrc
+    ~/.editorconfig: configs/editorconfig
+    ~/.gitattributes: configs/git/gitattributes
+    ~/.gitconfig: configs/git/gitconfig
+    ~/.gitconfig.audiomack: configs/git/gitconfig.audiomack
+    ~/.vimrc: configs/vim/vimrc
+    ~/.zshrc: shells/zshrc

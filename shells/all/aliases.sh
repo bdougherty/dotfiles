@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # prevent dangerous stuff on the root dir
-alias chmod="chmod --preserve-root"
-alias chown="chown --preserve-root"
+# alias chmod="chmod --preserve-root"
+# alias chown="chown --preserve-root"
 
 alias -- -="cd -"
 alias ...="cd ../.."

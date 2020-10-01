@@ -1,0 +1,10 @@
+- shell:
+  - command: scripts/mac.sh
+    description: Setting macOS preferences
+    stdout: true
+  - command: scripts/brew.sh
+    description: Installing homebrew
+    stdout: true
+
+- brewfile:
+    file: Brewfile

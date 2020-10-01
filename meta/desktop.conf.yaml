@@ -1,0 +1,7 @@
+- link:
+    ~/.config/youtube-dl: configs/youtube-dl
+
+- shell:
+  - command: scripts/npm.sh
+    description: Installing global npm packages
+    stdout: true
