@@ -10,10 +10,15 @@ DOTBOT_BREWFILE_DIR="dotbot-brewfile"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+function update_submodule() {
+	git -C "$1" submodule sync --quiet --recursive
+	git submodule update --init --recursive "$1"
+}
+
 cd "${BASEDIR}"
-git submodule update --init --recursive "${ANTIGEN_DIR}"
-git submodule update --init --recursive "${DOTBOT_DIR}"
-git submodule update --init --recursive "${DOTBOT_BREWFILE_DIR}"
+update_submodule "$ANTIGEN_DIR"
+update_submodule "$DOTBOT_DIR"
+update_submodule "$DOTBOT_BREWFILE_DIR"
 
 if [[ $(uname) == 'Darwin' ]]; then
 	"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" --plugin-dir dotbot-brewfile -c "${CONFIG}" "${@}"

@@ -1,12 +1,15 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
 [submodule "dotbot-brewfile"]
 	path = dotbot-brewfile
 	url = https://github.com/sobolevn/dotbot-brewfile.git
+	ignore = dirty
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
+	ignore = dirty
 [submodule "vim/pack/tpope/start/sensible"]
 	path = vim/pack/tpope/start/sensible
 	url = git@github.com:tpope/vim-sensible.git
