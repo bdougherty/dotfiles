@@ -1,30 +1,43 @@
+brew "act"
 brew "bash-completion"
 brew "diff-so-fancy"
-brew "editorconfig"
-brew "git"
+brew "exiftool"
+brew "ffmpeg"
+brew "gh"
 brew "git-lfs"
+brew "git"
+brew "go"
 brew "gpg"
+brew "grep"
 brew "httpie"
 brew "jq"
 brew "mas"
-brew "neovim"
-brew "node"
+brew "mkcert"
+brew "n"
+brew "navi"
+brew "pinentry-mac"
 brew "python"
+brew "rsync"
 brew "shellcheck"
 brew "thefuck"
 brew "tldr"
 brew "wget"
+brew "yarn"
 brew "youtube-dl"
-brew "z"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
 brew "zsh"
+
 
 # Browsers
 cask_args appdir: "/Applications"
+cask "firefox-developer-edition"
 cask "firefox"
-cask "caskroom/versions/firefoxdeveloperedition"
+cask "google-chrome-canary"
 cask "google-chrome"
-cask "caskroom/versions/google-chrome-canary"
-cask "caskroom/versions/safari-technology-preview"
+cask "microsoft-edge-beta"
+cask "microsoft-edge"
+cask "safari-technology-preview"
 
 # Global Apps
 cask_args appdir: "/Applications"
@@ -34,54 +47,68 @@ cask "vmware-fusion"
 
 # Regular Apps
 cask_args appdir: "~/Applications"
+cask "balenaetcher"
 cask "banktivity"
-cask "charles"
+cask "bartender"
 cask "chatology"
 cask "colorpicker-skalacolor"
 cask "daisydisk"
 cask "dropshare"
 cask "encryptme"
+cask "fission"
+cask "github"
 cask "handbrake"
 cask "iina"
 cask "imageoptim"
-cask "kaleidoscope"
+cask "keybase"
 cask "micro-snitch"
-cask "now"
+cask "muzzle"
+cask "onecast"
 cask "paw"
-cask "pdfpenpro"
+cask "powerphotos"
+cask "proxyman"
 cask "qlmarkdown"
 cask "qlstephen"
 cask "quicklook-json"
 cask "resilio-sync"
 cask "screens"
-cask "sketch"
+cask "sourcenote"
 cask "steam"
+cask "superduper"
 cask "suspicious-package"
-cask "tower"
-cask "transmit"
+cask "telegram"
 cask "transmission"
+cask "transmit"
 cask "visual-studio-code"
+cask "WebPQuickLook"
+cask "zerotier-one"
 
 # App Store
 mas "1Blocker", id: 1107421413
 mas "Contrast", id: 1254981365
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 924726344
-mas "DxOOpticsProForPhotos", id: 1056077392
+mas "Drop", id: 1173932628
 mas "Fantastical 2", id: 975937182
 mas "iA Writer", id: 775737590
+mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
+mas "Link Unshortener", id: 1506953658
 mas "MacFamilyTree 8", id: 1037755919
+mas "Microsoft Remote Desktop", id: 1295203466
 mas "Name Mangler 3", id: 603637384
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
+mas "PiPer", id: 1421915518
 mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 880001334
 mas "Slack", id: 803453959
+mas "SnippetsLab", id: 1006087419
 mas "Soulver", id: 413965349
-mas "Textual 7", id: 1262957439
-mas "Things 3", id: 904280696
-mas "Tweetbot", id: 557168941
+mas "StopTheMadness", id: 1376402589
 mas "The Unarchiver", id: 425424353
+mas "Things 3", id: 904280696
+mas "Tweetbot 3", id: 1384080005
 mas "Xcode", id: 497799835
+mas "Photo GeoTag", id: 957217448
