@@ -17,6 +17,10 @@ if command -v code >/dev/null 2>&1; then
 	export GIT_EDITOR="code -w -n"
 	alias dot="code -n ~/.dotfiles"
 	alias hosts="code -n /etc/hosts"
+elif command -v micro >/dev/null 2>&1; then
+	export EDITOR="micro"
+	alias dot="micro ~/.dotfiles"
+	alias hosts="sudo micro /etc/hosts"
 elif command -v vim >/dev/null 2>&1; then
 	export EDITOR="vim"
 	alias dot="vim ~/.dotfiles"
