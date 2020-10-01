@@ -1,19 +1,33 @@
 #!/bin/bash
 
+# prevent dangerous stuff on the root dir
+alias chmod="chmod --preserve-root"
+alias chown="chown --preserve-root"
+
 alias -- -="cd -"
 alias ...="cd ../.."
 alias ..="cd .."
 alias https="http --default-scheme=https"
 alias ipv4="curl -s https://ipv4.brad.cloud/"
 alias ipv6="curl -s https://ipv6.brad.cloud/"
+
 alias ni="npm install"
 alias nid="npm install --save-dev"
 alias nig="npm install -g"
 alias nr="npm run"
 alias nt="npm test"
 
+alias y="yarn"
+alias ya="yarn add"
+alias yd="yarn add --dev"
+alias yt="yarn test"
+
 if command -v gitjk_cmd >/dev/null 2>&1; then
-	alias gitjk="history 10 | tail -r | gitjk_cmd"
+	if command -v tac >/dev/null 2>&1; then
+		alias gitjk="history 10 | tac | gitjk_cmd"
+	else
+		alias gitjk="history 10 | tail -r | gitjk_cmd"
+	fi
 fi
 
 if command -v thefuck >/dev/null 2>&1; then
@@ -115,6 +129,13 @@ function npm() {
 		fi
 	fi
 
+	if [[ "$NPM_BENNY_HILL" ]]; then
+		if [[ "$1" == "i" ]] || [[ "$1" == "install" ]]; then
+			npx benny-hill npm "$@"
+			return
+		fi
+	fi
+
 	command npm "$@"
 }
 
@@ -188,4 +209,9 @@ function restart() {
 
 	echo "Don’t know how to shut down this machine, sorry."
 	return 1
+}
+
+# Check which app is using the specified port
+function whichport() {
+	sudo lsof -i :"$1"
 }

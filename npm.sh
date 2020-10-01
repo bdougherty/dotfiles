@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 npm_global_packages=(
-	caniuse-cmd
+	0x
+	caprover
 	dog-names
 	fast-cli
 	gitjk
-	resume-cli
-	superb
+	hiproxy
+	serve
+	superb-cli
 	trash-cli
 )
 
