@@ -11,11 +11,13 @@ shopt -s histappend
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
-# Enable extended globbing
-shopt -s extblob
+if [[ "${BASH_VERSINFO:-0}" -ge 4 ]]; then
+	# Enable extended globbing
+	shopt -s extblob
 
-# Automatically change into the typed directory without `cd`
-shopt -s autocd
+	# Automatically change into the typed directory without `cd`
+	shopt -s autocd
+fi
 
 # Append to history after every command
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
