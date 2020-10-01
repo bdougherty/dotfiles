@@ -5,7 +5,7 @@ prompt_git() {
 	local branchName='';
 
 	# Check if the current directory is in a Git repository.
-	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+	if [ "$(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}")" == '0' ]; then
 
 		# check if the current directory is in .git before running git checks
 		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
@@ -14,12 +14,12 @@ prompt_git() {
 			git update-index --really-refresh -q &>/dev/null;
 
 			# Check for uncommitted changes in the index.
-			if ! $(git diff --quiet --ignore-submodules --cached); then
+			if ! git diff --quiet --ignore-submodules --cached; then
 				s+='+';
 			fi;
 
 			# Check for unstaged changes.
-			if ! $(git diff-files --quiet --ignore-submodules --); then
+			if ! git diff-files --quiet --ignore-submodules --; then
 				s+='!';
 			fi;
 
@@ -52,12 +52,9 @@ prompt_git() {
 
 bold='';
 reset="\e[0m";
-black="\e[1;30m";
 blue="\e[1;34m";
-cyan="\e[1;36m";
 green="\e[1;32m";
 orange="\e[1;33m";
-purple="\e[1;35m";
 red="\e[1;31m";
 violet="\e[1;35m";
 white="\e[1;37m";
