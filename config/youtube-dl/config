@@ -1,2 +1,8 @@
 # Download best mp4 format available or any other best if no mp4 available
 -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'
+
+# Always put in Downloads and restrict title to prevent errors with Twitter
+-o ~/Downloads/%(title).220s-%(id)s.%(ext)s
+
+# Download any subs that are available
+--all-subs
