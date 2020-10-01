@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run shellcheck
-      run: shellcheck bash/settings.bash shell/*.sh
+      run: shellcheck shells/**/*.sh shells/**/*.bash
