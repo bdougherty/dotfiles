@@ -4,7 +4,7 @@
 		"bashrc": "shellscript",
 		"editorconfig": "properties",
 		"gitattributes": "properties",
-		"gitconfig": "properties",
+		"gitconfig*": "properties",
 		"curlrc": "properties",
 		"npmrc": "properties",
 		"vimrc": "viml",

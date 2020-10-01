@@ -17,6 +17,7 @@
     ~/.editorconfig:
     ~/.gitattributes:
     ~/.gitconfig:
+    ~/.gitconfig.audiomack:
     ~/.hyper.js:
     ~/.npmrc:
     ~/.shell:
