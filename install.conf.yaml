@@ -3,7 +3,10 @@
       create: true
       relink: true
 
-- clean: ['~']
+- clean:
+    ~/:
+    ~/.config:
+      recursive: true
 
 - link:
     ~/.config/youtube-dl:
