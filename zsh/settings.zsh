@@ -4,6 +4,8 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
 export HISTORY_IGNORE="(ls|cd|pwd|exit|history|hs)"
+export PURE_GIT_UNTRACKED_DIRTY=0
+export PURE_PROMPT_SYMBOL=">:"
 
 setopt APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -65,3 +67,8 @@ function () {
 
 bindkey "^[[" _dirnav_parent # alt-[
 bindkey "^[]" _dirnav_child # alt-]
+# Other options:
+# bindkey "^[;" _dirnav_parent # alt-;
+# bindkey "^['" _dirnav_child # alt-'
+# bindkey "^[b" _dirnav_parent # alt-left
+# bindkey "^[f" _dirnav_child # alt-right
