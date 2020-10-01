@@ -4,3 +4,36 @@ body,
 	tab-size: 4 !important;
 	-webkit-font-smoothing: auto !important;
 }
+
+/* Fix GitHub design issues */
+html[stopthemadness-href^="https://github.com"] body:not(.project-page) {
+	--max-width: 1280px;
+}
+
+html[stopthemadness-href^="https://github.com"] #js-pjax-container > div:first-child ,
+html[stopthemadness-href^="https://github.com"] #js-repo-pjax-container > div:first-child {
+	box-shadow: inset 0 -1px 0 #e1e4e8;
+	margin-bottom: 32px !important;
+}
+
+html[stopthemadness-href^="https://github.com"] #js-pjax-container > div:first-child > *,
+html[stopthemadness-href^="https://github.com"] #js-repo-pjax-container > div:first-child > * {
+	max-width: var(--max-width);
+	margin: auto;
+}
+
+html[stopthemadness-href^="https://github.com"] body.full-width-p-0 .new-discussion-timeline,
+html[stopthemadness-href^="https://github.com"] .container-xl {
+	max-width: var(--max-width) !important;
+	padding-left: 32px !important;
+	padding-right: 32px !important;
+}
+
+html[stopthemadness-href^="https://github.com"] .repository-content .Box-header.bg-white {
+	background-color: #f6f8fa !important;
+	border: 1px solid #e1e4e8 !important;
+}
+
+html[stopthemadness-href^="https://twitter.com"] div[data-testid="sidebarColumn"] div[aria-label="Timeline: Trending now"] {
+	display: none !important;
+}
