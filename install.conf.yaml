@@ -18,7 +18,6 @@
     ~/.gitattributes:
     ~/.gitconfig:
     ~/.gitconfig.audiomack:
-    ~/.npmrc:
     ~/.shell:
     ~/.vim:
     ~/.vimrc:

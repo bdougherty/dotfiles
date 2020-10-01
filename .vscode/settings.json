@@ -2,11 +2,10 @@
 	"files.associations": {
 		"bash_profile": "shellscript",
 		"bashrc": "shellscript",
+		"curlrc": "properties",
 		"editorconfig": "properties",
 		"gitattributes": "properties",
 		"gitconfig*": "properties",
-		"curlrc": "properties",
-		"npmrc": "properties",
 		"vimrc": "viml",
 		"zshrc": "shellscript"
 	},

@@ -7,6 +7,17 @@ export PATH="$DOTFILE_PATH/bin:$PATH"
 export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
 
+export AUTHOR_NAME="Brad Dougherty"
+export AUTHOR_EMAIL="me@brad.is"
+
+# Set npm here so ~/.npmrc can have secrets
+export NPM_CONFIG_DEPTH=0
+export NPM_CONFIG_INIT_AUTHOR_NAME=$AUTHOR_NAME
+export NPM_CONFIG_INIT_AUTHOR_EMAIL=$AUTHOR_EMAIL
+export NPM_CONFIG_INIT_LICENSE="MIT"
+export NPM_CONFIG_SIGN_GIT_COMMIT=true
+export NPM_CONFIG_SIGN_GIT_TAG=true
+
 # Opt out of Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
 
