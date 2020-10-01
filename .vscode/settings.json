@@ -10,5 +10,15 @@
 		"vimrc": "viml",
 		"zshrc": "shellscript"
 	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"antigen/": true,
+		"dotbot/": true,
+		"dotbot-brewfile/": true
+	},
 	"python.pythonPath": "/usr/local/bin/python3"
 }
