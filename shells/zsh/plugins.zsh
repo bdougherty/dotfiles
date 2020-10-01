@@ -2,7 +2,7 @@
 
 # Needs to be done before compinit. See
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-if type brew &>/dev/null; then
+if command -v brew >/dev/null 2>&1; then
 	FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
