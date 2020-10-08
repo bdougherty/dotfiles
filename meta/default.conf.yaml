@@ -6,7 +6,9 @@
 - clean: ['~/', '~/.config']
 
 - link:
-    ~/.dotfiles: ''
+    ~/.dotfiles:
+      if: '[ ! -d "$HOME/.dotfiles" ]'
+      path: ''
     ~/.bash_profile: shells/bash_profile
     ~/.bashrc: shells/bashrc
     ~/.curlrc: configs/curlrc
