@@ -17,6 +17,6 @@
     ~/.editorconfig: configs/editorconfig
     ~/.gitattributes: configs/git/gitattributes
     ~/.gitconfig: configs/git/gitconfig
-    ~/.gitconfig.audiomack: configs/git/gitconfig.audiomack
+    ~/.gitconfig.vimeo: configs/git/gitconfig.vimeo
     ~/.vimrc: configs/vim/vimrc
     ~/.zshrc: shells/zshrc
