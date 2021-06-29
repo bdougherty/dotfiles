@@ -1,9 +1,12 @@
 [alias]
 	am = commit --amend --no-edit
 	ame = commit --amend
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 	ci = commit
 	co = checkout
+	cob = checkout -b
 	com = checkout master
+	del = branch -D
 	df = diff --color
 	dfs = diff --staged --color
 	dt = difftool
@@ -11,12 +14,13 @@
 	mt = mergetool
 	nb = "!git checkout -b $(superb)-$(dog-names | awk '{print tolower($0)}')"
 	patch = "!git --no-pager diff --no-color"
-	pr = "!f() { git fetch $1 refs/pull/$2/head:pr-$2; }; f"
 	st = status
 	sub = submodule update --init --recursive
 	po = push -u origin
+	fp = push --force-with-lease
 	conflicts = "!git ls-files -u | awk '{print $4}' | sort -u"
 	edit-conflicts = "!$EDITOR $(git conflicts)"
+	wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
 
 [apply]
 	whitespace = fix
@@ -46,11 +50,13 @@
 	untrackedCache = true
 	compression = 0
 	pager = less --tabs=4 -RFX
+	whitespace = -trailing-space
 
 [diff]
 	algorithm = patience
 	compactionHeuristic = true
 	colorMoved = zebra
+	mnemonicPrefix = true
 
 [diff "plist"]
 	textconv = plutil -convert xml1 -o -
@@ -67,11 +73,20 @@
 [fetch]
 	prune = true
 
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
 [gpg]
 	program = gpg
 
 [help]
 	autocorrect = 1
+
+[init]
+	defaultBranch = master
 
 [merge "npm-merge-driver"]
 	name = automatically merge npm lockfiles
@@ -106,13 +121,22 @@
 	enabled = true
 	autoupdate = true
 
+[tag]
+	sort = version:refname
+
 [user]
 	name = Brad Dougherty
 	email = me@brad.is
 	signingkey = 704F8E1C
 
+[versionsort]
+	suffix = -
+
 [includeIf "gitdir:~/Code/audiomack/"]
 	path = ~/.gitconfig.audiomack
+
+[includeIf "gitdir:~/Code/vimeo/"]
+	path = ~/.gitconfig.vimeo
 
 [include]
 	path = ~/.gitconfig.local

@@ -9,8 +9,10 @@
     ~/.dotfiles:
       if: '[ ! -d "$HOME/.dotfiles" ]'
       path: ''
+    ~/.asdfrc: configs/asdfrc
     ~/.bash_profile: shells/bash_profile
     ~/.bashrc: shells/bashrc
+    ~/.config/gh/config.yml: configs/gh/config.yml
     ~/.curlrc: configs/curlrc
     ~/.editorconfig: configs/editorconfig
     ~/.gitattributes: configs/git/gitattributes

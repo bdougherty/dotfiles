@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+GPG_TTY=$(tty)
+export GPG_TTY
+
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups:ignorespace

@@ -5,7 +5,8 @@ antigen bundle zsh-users/zsh-history-substring-search # needs to be after syntax
 antigen bundle djui/alias-tips
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure@main
-antigen bundle robbyrussell/oh-my-zsh lib/functions
-antigen bundle robbyrussell/oh-my-zsh lib/termsupport
+antigen bundle ohmyzsh/ohmyzsh lib/functions.zsh
+antigen bundle ohmyzsh/ohmyzsh lib/termsupport.zsh
+antigen bundle ohmyzsh/ohmyzsh plugins/sudo
 antigen bundle gparker42/zsh-dirnav dirnav
 antigen apply

@@ -7,6 +7,7 @@
 alias -- -="cd -"
 alias ...="cd ../.."
 alias ..="cd .."
+alias cdd="cd ~/Downloads"
 alias https="http --default-scheme=https"
 alias ipv4="curl -s https://ipv4.brad.cloud/"
 alias ipv6="curl -s https://ipv6.brad.cloud/"
@@ -19,7 +20,7 @@ alias nt="npm test"
 
 alias y="yarn"
 alias ya="yarn add"
-alias yd="yarn add --dev"
+alias yad="yarn add --dev"
 alias yt="yarn test"
 
 if command -v gitjk_cmd >/dev/null 2>&1; then

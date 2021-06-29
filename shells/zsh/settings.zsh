@@ -6,6 +6,8 @@ export SAVEHIST=$HISTSIZE
 export HISTORY_IGNORE="(ls|cd|pwd|exit|history|hs)"
 export PURE_GIT_UNTRACKED_DIRTY=0
 export PURE_PROMPT_SYMBOL=">:"
+export GPG_TTY=$TTY
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 setopt APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -60,7 +62,7 @@ zstyle ':completion:*' format '%B---- %d%b'
 # https://github.com/github/hub/issues/1956.
 function () {
 	if command -v brew >/dev/null 2>&1; then
-		GIT_ZSH_COMPLETIONS_FILE_PATH="$(brew --prefix)/share/zsh/site-functions/_git"
+		GIT_ZSH_COMPLETIONS_FILE_PATH='/usr/local/share/zsh/site-functions/_git'
 		if [ -f $GIT_ZSH_COMPLETIONS_FILE_PATH ]; then
 			rm $GIT_ZSH_COMPLETIONS_FILE_PATH
 		fi

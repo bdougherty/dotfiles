@@ -9,15 +9,13 @@
 		"vimrc": "viml",
 		"zshrc": "shellscript"
 	},
-	"files.exclude": {
-		"**/.git": true,
-		"**/.svn": true,
-		"**/.hg": true,
-		"**/CVS": true,
-		"**/.DS_Store": true,
-		"antigen/": true,
-		"dotbot/": true,
-		"dotbot-brewfile/": true
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/bower_components": true,
+		"**/*.code-search": true,
+		"meta/dotbot/": true,
+		"meta/dotbot-brewfile/": true,
+		"shells/zsh/antigen/": true
 	},
 	"python.pythonPath": "/usr/local/bin/python3"
 }

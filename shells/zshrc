@@ -9,9 +9,9 @@ if [ -f ~/.zshrc.local.before ]; then
 fi
 
 source ~/.dotfiles/shells/all/bootstrap.sh
-source ~/.dotfiles/shells/all/aliases.sh
 source ~/.dotfiles/shells/zsh/plugins.zsh
 source ~/.dotfiles/shells/zsh/settings.zsh
+source ~/.dotfiles/shells/all/aliases.sh
 
 if [ -f ~/.zshrc.local.after ]; then
 	source ~/.zshrc.local.after

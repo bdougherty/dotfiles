@@ -1,10 +1,15 @@
 - shell:
-  - command: scripts/mac.sh
+  - command: scripts/macos.sh
     description: Setting macOS preferences
     stdout: true
+    stderr: true
   - command: scripts/brew.sh
     description: Installing homebrew
     stdout: true
-
-- brewfile:
-    file: Brewfile
+    stderr: true
+  - command: brew bundle --file meta/Brewfile
+    description: Installing brew stuff
+    stdout: true
+    stderr: true
+  - command: xattr -d com.apple.quarantine ~/Library/QuickLook/QLStephen.qlgenerator && xattr -d com.apple.quarantine  ~/Library/QuickLook/QLMarkdown.qlgenerator
+    description: Un-quarantine Quick Look plugins

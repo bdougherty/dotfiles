@@ -52,10 +52,7 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
-GPG_TTY=$(tty)
-export GPG_TTY
-
 if command -v mkcert >/dev/null 2>&1; then
-	NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+	NODE_EXTRA_CA_CERTS="$HOME/Library/Application Support/mkcert/rootCA.pem"
 	export NODE_EXTRA_CA_CERTS
 fi

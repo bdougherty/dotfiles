@@ -23,5 +23,5 @@ update_submodule "$DOTBOT_DIR"
 update_submodule "$DOTBOT_BREWFILE_DIR"
 
 for conf in ${DEFAULT_CONFIG} "${@}"; do
-	"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" --plugin-dir dotbot-brewfile -c "meta/${conf}${CONFIG_SUFFIX}"
+	"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" --plugin-dir ${DOTBOT_BREWFILE_DIR} -c "meta/${conf}${CONFIG_SUFFIX}"
 done
