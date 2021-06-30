@@ -28,3 +28,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Do a history search with the up and down arrows
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
+
+if [[ -a /usr/local/opt/asdf/asdf.sh ]]; then
+	source /usr/local/opt/asdf/asdf.sh
+fi

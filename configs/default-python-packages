@@ -1,0 +1,6 @@
+pip
+setuptools
+brotli
+zopfli
+fonttools
+gallery-dl

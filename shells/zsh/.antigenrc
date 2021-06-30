@@ -7,7 +7,6 @@ antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure@main
 antigen bundle ohmyzsh/ohmyzsh lib/functions.zsh
 antigen bundle ohmyzsh/ohmyzsh lib/termsupport.zsh
-antigen bundle ohmyzsh/ohmyzsh plugins/asdf
 antigen bundle ohmyzsh/ohmyzsh plugins/sudo
 antigen bundle gparker42/zsh-dirnav dirnav
 antigen apply
