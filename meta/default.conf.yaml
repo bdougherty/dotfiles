@@ -18,5 +18,6 @@
     ~/.gitattributes: configs/git/gitattributes
     ~/.gitconfig: configs/git/gitconfig
     ~/.gitconfig.vimeo: configs/git/gitconfig.vimeo
+    ~/.nanorc: configs/nano/nanorc
     ~/.vimrc: configs/vim/vimrc
     ~/.zshrc: shells/zshrc

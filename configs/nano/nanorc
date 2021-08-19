@@ -1,0 +1,12 @@
+include /Users/brad/.dotfiles/configs/nano/syntax/*.nanorc
+
+set autoindent
+set linenumbers
+set minibar
+set mouse
+set noconvert
+set nohelp
+set tabsize 4
+
+set numbercolor yellow,normal
+set titlecolor normal,normal

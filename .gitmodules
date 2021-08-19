@@ -10,3 +10,6 @@
 	path = shells/zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
 	ignore = dirty
+[submodule "configs/nano/syntax"]
+	path = configs/nano/syntax
+	url = https://github.com/scopatz/nanorc.git
