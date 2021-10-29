@@ -1,3 +1,12 @@
 [user]
 	email = brad@vimeo.com
-	# signingkey = 3AC97C4964C99872
+	signingkey = E0F2596AE00F7790
+
+[commit]
+	gpgsign = true
+
+[url "git@github.vimeows.com:"]
+	insteadOf = https://github.vimeows.com
+
+[url "git@github.vimeows.com:"]
+	insteadOf = https://go.vimeocloud.com
