@@ -1,3 +1,6 @@
+- link:
+    ~/.config/youtube-dl: configs/youtube-dl
+
 - shell:
   - command: scripts/macos.sh
     description: Setting macOS preferences

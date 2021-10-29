@@ -10,5 +10,10 @@ if [[ -a /usr/local/opt/asdf/asdf.sh ]]; then
 	source /usr/local/opt/asdf/asdf.sh
 fi
 
+if [[ -d $HOME/.asdf ]]; then
+	FPATH=$HOME/.asdf/completions:$FPATH
+	source $HOME/.asdf/asdf.sh
+fi
+
 source $DOTFILE_PATH/shells/zsh/antigen/antigen.zsh
 antigen init $DOTFILE_PATH/shells/zsh/.antigenrc

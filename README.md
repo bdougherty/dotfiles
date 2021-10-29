@@ -20,10 +20,10 @@ Then run the installer with optional extra configs. For servers, run:
 For Macs, run:
 
 ```shell
-./install mac desktop
+./install mac asdf
 ```
 
-`mac` will install Homebrew and associated packages and `desktop` will install node and python via asdf.
+`mac` will install Homebrew and associated packages and `asdf` will install node and python via asdf.
 
 ## Local Customizations
 
