@@ -25,6 +25,12 @@ For Macs, run:
 
 `mac` will install Homebrew and associated packages and `asdf` will install node and python via asdf.
 
+For Linux distros that use apt, run:
+
+```shell
+./install linux asdf
+```
+
 ## Local Customizations
 
 There are a number of hooks to make local customizations:

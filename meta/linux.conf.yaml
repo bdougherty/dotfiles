@@ -1,0 +1,10 @@
+- link:
+    ~/.config/youtube-dl: configs/youtube-dl
+    ~/.default-npm-packages: configs/default-npm-packages
+    ~/.default-python-packages: configs/default-python-packages
+
+- shell:
+  - command: scripts/linux_apt.sh
+    description: Installing packages
+    stdout: true
+    stderr: true
