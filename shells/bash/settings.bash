@@ -38,6 +38,6 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 if [[ -a $ASDF_SH ]]; then
-	# shellcheck disable=SC1091
+	# shellcheck disable=SC1090,SC1091
 	source "$HOME/.asdf/asdf.sh"
 fi
