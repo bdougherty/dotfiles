@@ -6,6 +6,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Run shellcheck
-      run: shellcheck shells/**/*.sh shells/**/*.bash
+      run: shellcheck shells/bash_profile shells/bashrc shells/**/*.sh shells/**/*.bash

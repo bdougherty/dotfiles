@@ -29,6 +29,15 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
-if [[ -a /usr/local/opt/asdf/asdf.sh ]]; then
-	source /usr/local/opt/asdf/asdf.sh
+if command -v brew >/dev/null 2>&1; then
+	ASDF_SH="$(brew --prefix)/opt/asdf/libexec/asdf.sh"
+	if [[ -a $ASDF_SH ]]; then
+		# shellcheck disable=SC1090
+		source "$ASDF_SH"
+	fi
+fi
+
+if [[ -a $ASDF_SH ]]; then
+	# shellcheck disable=SC1091
+	source "$HOME/.asdf/asdf.sh"
 fi

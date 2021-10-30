@@ -3,17 +3,23 @@
 # Needs to be done before compinit. See
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 if command -v brew >/dev/null 2>&1; then
-	FPATH=/usr/local/share/zsh/site-functions:$FPATH
+	FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
-if [[ -a /usr/local/opt/asdf/asdf.sh ]]; then
-	source /usr/local/opt/asdf/asdf.sh
+if [[ -d "$HOME/.asdf/completions" ]]; then
+	FPATH="$HOME/.asdf/completions:${FPATH}"
 fi
 
-if [[ -d $HOME/.asdf ]]; then
-	FPATH=$HOME/.asdf/completions:$FPATH
-	source $HOME/.asdf/asdf.sh
+source "$DOTFILE_PATH/shells/zsh/antigen/antigen.zsh"
+antigen init "$DOTFILE_PATH/shells/zsh/.antigenrc"
+
+if command -v brew >/dev/null 2>&1; then
+	ASDF_SH="$(brew --prefix)/opt/asdf/libexec/asdf.sh"
+	if [[ -a $ASDF_SH ]]; then
+		source $ASDF_SH
+	fi
 fi
 
-source $DOTFILE_PATH/shells/zsh/antigen/antigen.zsh
-antigen init $DOTFILE_PATH/shells/zsh/.antigenrc
+if [[ -a $ASDF_SH ]]; then
+	source "$HOME/.asdf/asdf.sh"
+fi
