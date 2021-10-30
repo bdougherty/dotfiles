@@ -30,14 +30,14 @@ bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
 if command -v brew >/dev/null 2>&1; then
-	ASDF_SH="$(brew --prefix)/opt/asdf/libexec/asdf.sh"
-	if [[ -a $ASDF_SH ]]; then
+	ASDF_SH="$(brew --prefix)/opt/asdf/asdf.sh"
+	if [[ -f $ASDF_SH ]]; then
 		# shellcheck disable=SC1090
 		source "$ASDF_SH"
 	fi
 fi
 
-if [[ -a $ASDF_SH ]]; then
+if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
 	# shellcheck disable=SC1090,SC1091
 	source "$HOME/.asdf/asdf.sh"
 fi

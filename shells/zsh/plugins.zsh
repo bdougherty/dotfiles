@@ -14,12 +14,12 @@ source "$DOTFILE_PATH/shells/zsh/antigen/antigen.zsh"
 antigen init "$DOTFILE_PATH/shells/zsh/.antigenrc"
 
 if command -v brew >/dev/null 2>&1; then
-	ASDF_SH="$(brew --prefix)/opt/asdf/libexec/asdf.sh"
-	if [[ -a $ASDF_SH ]]; then
+	ASDF_SH="$(brew --prefix)/opt/asdf/asdf.sh"
+	if [[ -f $ASDF_SH ]]; then
 		source $ASDF_SH
 	fi
 fi
 
-if [[ -a $ASDF_SH ]]; then
+if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
 	source "$HOME/.asdf/asdf.sh"
 fi
