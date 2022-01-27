@@ -20,5 +20,8 @@ asdf global nodejs latest
 
 asdf plugin-add python
 asdf install python latest
-# asdf install python latest:2
-# asdf global python latest latest:2
+asdf global python latest
+
+asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
+asdf install deno latest
+asdf global deno latest

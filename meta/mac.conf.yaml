@@ -3,10 +3,6 @@
     ~/.config/yt-dlp: configs/yt-dlp
 
 - shell:
-  - command: scripts/macos.sh
-    description: Setting macOS preferences
-    stdout: true
-    stderr: true
   - command: scripts/brew.sh
     description: Installing homebrew
     stdout: true
@@ -15,5 +11,9 @@
     description: Installing brew stuff
     stdout: true
     stderr: true
-  - command: xattr -d com.apple.quarantine ~/Library/QuickLook/QLStephen.qlgenerator && xattr -d com.apple.quarantine  ~/Library/QuickLook/QLMarkdown.qlgenerator
+  - command: scripts/macos.sh
+    description: Setting macOS preferences
+    stdout: true
+    stderr: true
+  - command: xattr -d com.apple.quarantine ~/Library/QuickLook/QLStephen.qlgenerator && xattr -d com.apple.quarantine ~/Library/QuickLook/QLMarkdown.qlgenerator
     description: Un-quarantine Quick Look plugins

@@ -1,49 +1,58 @@
 brew "act"
 brew "asdf"
 brew "bash-completion"
+brew "bat"
+brew "bottom"
 brew "diff-so-fancy"
-brew "dog"
 brew "docker-completion"
 brew "docker-compose-completion"
+brew "dog"
 brew "dotenv-linter"
+brew "exa"
 brew "exiftool"
 brew "ffmpeg"
+brew "fzf"
 brew "gh"
 brew "git-lfs"
 brew "git"
-brew "go"
 brew "gpg"
 brew "grep"
 brew "gron"
+brew "hexyl"
 brew "httpie"
+brew "jesseduffield/lazydocker/lazydocker"
 brew "jq"
 brew "mas"
 brew "mkcert"
 brew "nano"
 brew "navi"
 brew "pinentry-mac"
+brew "ripgrep"
 brew "rsync"
 brew "shellcheck"
 brew "thefuck"
-brew "tldr"
+brew "wader/tap/fq"
 brew "wget"
-brew "youtube-dl"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zsh"
 
 tap "homebrew/cask-fonts"
 cask "font-atkinson-hyperlegible"
+cask "font-cascadia-code"
+cask "font-fira-mono"
 cask "font-goudy-bookletter-1911"
 cask "font-ia-writer-duo"
 cask "font-ia-writer-mono"
 cask "font-ia-writer-quattro"
+# cask "font-ibm-plex-mono"
 cask "font-inconsolata"
 cask "font-inter"
 cask "font-juliamono"
 cask "font-lato"
 cask "font-national-park"
 cask "font-public-sans"
+cask "font-recursive-code"
 
 # Browsers
 cask_args appdir: "/Applications"
@@ -59,15 +68,15 @@ cask "safari-technology-preview"
 cask_args appdir: "/Applications"
 cask "1password"
 cask "little-snitch"
-cask "vmware-fusion"
+# cask "vmware-fusion"
 
 # Regular Apps
 cask_args appdir: "~/Applications"
 cask "balenaetcher"
 cask "banktivity"
 cask "bartender"
+cask "bluetility"
 cask "chatology"
-cask "colorpicker-skalacolor"
 cask "coconutbattery"
 cask "daisydisk"
 cask "discord"
@@ -85,15 +94,12 @@ cask "keybase"
 cask "lunar"
 cask "micro-snitch"
 cask "muzzle"
+cask "mkvtoolnix"
+cask "makemkv"
 cask "paw"
-cask "pdfpenpro"
+# cask "pdfpenpro"
 cask "piezo"
-cask "powerphotos"
 cask "proxyman"
-cask "qlmarkdown"
-cask "qlstephen"
-cask "quicklook-json"
-cask "resilio-sync"
 cask "soulver"
 cask "sourcenote"
 cask "steam"
@@ -102,16 +108,18 @@ cask "suspicious-package"
 cask "telegram"
 cask "transmit"
 cask "visual-studio-code"
-cask "zerotier-one"
+cask "xcodes"
+cask "viscosity"
 
 # App Store
 mas "1Blocker", id: 1107421413
+mas "Base", id: 402383384
 mas "Battery Indicator", id: 1206020918
-mas "Black Out", id: 1319884285
-mas "Contrast", id: 1254981365
+mas "BetterJSON", id: 1511935951
+mas "Boop", id: 1518425043
+mas "Color Picker", id: 1545870783
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 924726344
-mas "Drop", id: 1173932628
 mas "Fantastical", id: 975937182
 mas "Gemini 2", id: 1090488118
 mas "iA Writer", id: 775737590
@@ -121,13 +129,14 @@ mas "Keynote", id: 409183694
 mas "Link Unshortener", id: 1506953658
 mas "Lungo", id: 1263070803
 mas "MacFamilyTree 9", id: 1458866808
+mas "Mela", id: 1568924476
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Name Mangler", id: 603637384
 mas "NextDNS", id: 1464122853
 mas "Numbers", id: 409203825
 mas "OctoLinker", id: 1549308269
+mas "OctoLinker", id: 1549308269
 mas "Pages", id: 409201541
-mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Photo GeoTag", id: 957217448
 mas "PiPer", id: 1421915518
 mas "Pixelmator Pro", id: 1289583905
@@ -135,6 +144,10 @@ mas "Reeder", id: 1529448980
 mas "Shareful", id: 1522267256
 mas "Slack", id: 803453959
 mas "StopTheMadness", id: 1376402589
+mas "Tailscale", id: 1475387142
 mas "Things", id: 904280696
+mas "Tweaks for Twitter", id: 1567751529
+mas "Userscripts", id: 1463298887
+mas "VisBug", id: 1538509686
 mas "Xcode", id: 497799835
 mas "xScope", id: 889428659
