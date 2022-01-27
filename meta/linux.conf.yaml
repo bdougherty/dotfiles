@@ -1,5 +1,6 @@
 - link:
     ~/.config/youtube-dl: configs/youtube-dl
+    ~/.config/yt-dlp: configs/yt-dlp
     ~/.default-npm-packages: configs/default-npm-packages
     ~/.default-python-packages: configs/default-python-packages
 

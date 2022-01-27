@@ -1,5 +1,6 @@
 - link:
     ~/.config/youtube-dl: configs/youtube-dl
+    ~/.config/yt-dlp: configs/yt-dlp
 
 - shell:
   - command: scripts/macos.sh
